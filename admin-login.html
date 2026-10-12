@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yah! Admin - Login</title>
+    <link rel="icon" href="./images/logo.png" type="image/png">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/login-signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles/topscrollindicator.css">
+    <link rel="stylesheet" href="styles/cursor.css">
+</head>
+
+<body>
+
+    <div class="auth-wrapper">
+        <!-- Brand Panel (Left) -->
+        <div class="auth-brand-panel">
+            <div class="brand-scoops">🍦</div>
+            <img src="./images/logo.png" alt="Yah! Logo">
+            <h2>Admin Portal</h2>
+            <p>Secure access to Yah! East Legon management dashboard. Authorized personnel only.</p>
+        </div>
+
+        <!-- Form Panel (Right) -->
+        <div class="auth-form-panel">
+            <div class="auth-card">
+                <h1>Admin Login</h1>
+                <p class="auth-subtitle">Access the management dashboard</p>
+
+                <form id="admin-login-form">
+                    <div class="auth-input-group">
+                        <label for="email">Admin Email</label>
+                        <input type="email" id="email" class="input-field" placeholder="admin@yah.com" required autocomplete="email">
+                    </div>
+
+                    <div class="auth-input-group">
+                        <label for="password-input-field">Password</label>
+                        <div class="password-container">
+                            <input type="password" class="input-field" id="password-input-field" placeholder="Enter your admin password" required autocomplete="current-password">
+                            <i class="fa-solid fa-eye-slash" id="toggle-password"></i>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="auth-btn">
+                        <i class="fas fa-lock"></i> Login to Vendor Hub
+                    </button>
+
+                    <div style="margin-top: 15px; text-align: center;">
+                        <button type="button" id="demo-vendor-btn" style="
+                            width: 100%;
+                            padding: 12px;
+                            background: linear-gradient(135deg, #10b981, #059669);
+                            color: white;
+                            border: none;
+                            border-radius: 12px;
+                            font-weight: 700;
+                            font-size: 0.95rem;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 8px;
+                            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+                        ">
+                            <i class="fas fa-bolt"></i> 1-Click Demo Vendor Access (Judging)
+                        </button>
+                    </div>
+
+                    <div style="margin-top: 15px; padding: 10px; background: rgba(217, 22, 86, 0.05); border-radius: 10px; font-size: 0.8rem; color: #666; text-align: center;">
+                        <span>Demo Account: <strong>admin@yah.com</strong> | Pass: <strong>Qwerty123!</strong></span>
+                    </div>
+                </form>
+
+                <p class="auth-footer-link">
+                    <a href="./index.html">← Back to Marketplace Website</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="script/admin-login.js"></script>
+</body>
+
+</html>

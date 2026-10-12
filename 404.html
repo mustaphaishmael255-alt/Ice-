@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Yah! East Legon</title>
+    <!-- css link -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="custom-cursor.css">
+    
+    <!-- font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .error-container {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 20px;
+            background: var(--bg-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .error-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+
+        .error-code {
+            font-size: 10rem;
+            font-weight: 900;
+            color: var(--main-color);
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 0px rgba(255, 107, 107, 0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .error-title {
+            font-size: 2.5rem;
+            color: var(--heading-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .error-msg {
+            font-size: 1.1rem;
+            color: var(--p-color);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .error-img {
+            max-width: 300px;
+            margin: 0 auto 30px;
+            display: block;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+        }
+
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--ternary-color);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(244, 143, 177, 0.4);
+        }
+
+        .home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(244, 143, 177, 0.6);
+            background: #f07b9f;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Decorative background elements */
+        .decor {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 1;
+            opacity: 0.1;
+        }
+        .decor-1 { width: 300px; height: 300px; background: var(--main-color); top: -100px; left: -100px; }
+        .decor-2 { width: 200px; height: 200px; background: var(--ternary-color); bottom: 50px; right: -50px; }
+    </style>
+</head>
+<body>
+    
+    <header class="header">
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="Yah! East Legon Logo">
+        </a>
+
+        <nav class="nav-links">
+            <a href="index.html" class="link">Home</a>
+            <a href="products.html" class="link">Products</a>
+            <a href="dashboard.html" class="link">Dashboard</a>
+            <a href="track.html" class="link">Track Order</a>
+        </nav>
+
+        <div class="icons">
+            <div class="icon">
+                <i class="fa fa-user" id="user-profile-icon"></i>
+            </div>
+            <a href="cart.html" class="icon" style="text-decoration:none;">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+            <div class="icon menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="error-container">
+        <div class="decor decor-1"></div>
+        <div class="decor decor-2"></div>
+        
+        <div class="error-content">
+            <img src="images/product-not-found.png" alt="Melted Ice Cream" class="error-img" onerror="this.src='images/logo.png'">
+            <div class="error-code">404</div>
+            <h1 class="error-title">Oops! Brain Freeze!</h1>
+            <p class="error-msg">Looks like the page you are looking for has melted away or never existed in our flavor selection. Let's get you back to the sweet stuff.</p>
+            <a href="index.html" class="home-btn">
+                <i class="fas fa-home"></i> Back to Homepage
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer" style="padding-top: 50px;">
+        <div class="wrapper">
+            <div class="box-container">
+                <div class="box">
+                    <img src="images/logo.png" alt="" class="logo">
+                    <p>Yah! East Legon brings you the finest, artisanal treats crafted with love and passion.</p>
+                    <div class="share">
+                        <a href="#" class="fab fa-facebook-f"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                    </div>
+                </div>
+                <div class="box">
+                    <h3>Contact Info</h3>
+                    <a href="#" class="links"><i class="fas fa-phone"></i> +233-55-123-4567</a>
+                    <a href="#" class="links"><i class="fas fa-envelope"></i> hello@yaheastlegon.com</a>
+                    <a href="#" class="links"><i class="fas fa-map-marker-alt"></i> East Legon, Accra</a>
+                </div>
+                <div class="box">
+                    <h3>Quick Links</h3>
+                    <a href="index.html" class="links"><i class="fas fa-arrow-right"></i> Home</a>
+                    <a href="products.html" class="links"><i class="fas fa-arrow-right"></i> Products</a>
+                    <a href="cart.html" class="links"><i class="fas fa-arrow-right"></i> Cart</a>
+                </div>
+            </div>
+            <div class="credit"> &copy; <span id="year"></span> <span>Yah! East Legon</span> | All Rights Reserved </div>
+        </div>
+    </footer>
+
+    <div class="scroll-button">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="script/custom-cursor.js"></script>
+    <script type="module" src="script/supabase.js"></script>
+    <script type="module" src="script/toast.js"></script>
+    <script type="module" src="script/nav.js"></script>
+    <script type="module" src="script/cart.js"></script>
+</body>
+</html>

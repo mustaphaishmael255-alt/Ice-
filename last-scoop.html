@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yah! — Last Scoop Surplus Marketplace</title>
+    <meta name="description" content="Rescue fresh surplus ice cream from local artisanal parlours at up to 50% off. WarriorHacks 2.0 Community Food Waste Reduction initiative.">
+    <link rel="icon" href="./images/logo.png" type="image/png">
+
+    <!-- CSS stylesheets -->
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/products.css">
+    <link rel="stylesheet" href="styles/mediaQueries.css">
+    <link rel="stylesheet" href="styles/cursor.css">
+    <link rel="stylesheet" href="styles/topscrollindicator.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .last-scoop-hero {
+            background: linear-gradient(135deg, rgba(255, 240, 245, 0.95) 0%, rgba(245, 230, 255, 0.9) 100%);
+            padding: 130px 20px 50px;
+            text-align: center;
+            border-bottom: 1px solid rgba(217, 22, 86, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hackathon-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--main-color), var(--ternary-color));
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(217, 22, 86, 0.25);
+        }
+
+        .last-scoop-hero h1 {
+            font-size: 2.8rem;
+            color: var(--ternary-color);
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .last-scoop-hero p {
+            max-width: 700px;
+            margin: 0 auto 25px;
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .rescue-stats-ribbon {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .stat-pill {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(217, 22, 86, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            font-weight: 600;
+            color: var(--ternary-color);
+        }
+
+        .stat-pill i {
+            color: var(--main-color);
+            font-size: 1.1rem;
+        }
+
+        .filters-container {
+            max-width: 1200px;
+            margin: 30px auto 10px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn-scoop {
+            padding: 8px 18px;
+            border-radius: 20px;
+            border: 1px solid #e0e0e0;
+            background: #fff;
+            color: #444;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .filter-btn-scoop:hover, .filter-btn-scoop.active {
+            background: var(--main-color);
+            color: #fff;
+            border-color: var(--main-color);
+            box-shadow: 0 4px 10px rgba(217, 22, 86, 0.2);
+        }
+
+        .vendor-dropdown-select {
+            padding: 9px 16px;
+            border-radius: 20px;
+            border: 1px solid #e0e0e0;
+            background: #fff;
+            font-size: 0.9rem;
+            color: #444;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .deals-grid {
+            max-width: 1200px;
+            margin: 20px auto 60px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 25px;
+        }
+
+        .deal-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(217, 22, 86, 0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .deal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(217, 22, 86, 0.12);
+        }
+
+        .deal-card-img-wrap {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            background: #fdf5f8;
+        }
+
+        .deal-card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .deal-card:hover .deal-card-img-wrap img {
+            transform: scale(1.05);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #e11d48;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(225, 29, 72, 0.4);
+        }
+
+        .quantity-badge {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(4px);
+            color: #ffeb3b;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .deal-card-body {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .vendor-info-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #888;
+            font-size: 0.82rem;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .vendor-info-row i {
+            color: var(--main-color);
+        }
+
+        .deal-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--ternary-color);
+            margin: 6px 0 8px 0;
+            text-align: left;
+            line-height: 1.3;
+        }
+
+        .deal-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 14px;
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .deal-deadline-box {
+            background: #fff5f8;
+            border-left: 3px solid var(--main-color);
+            padding: 8px 10px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.82rem;
+            color: #831843;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+        }
+
+        .deal-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 10px;
+            border-top: 1px dashed #eee;
+        }
+
+        .price-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .original-price {
+            font-size: 0.85rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .deal-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--main-color);
+        }
+
+        .rescue-btn {
+            background: linear-gradient(135deg, var(--main-color), var(--ternary-color));
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .rescue-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(217, 22, 86, 0.3);
+        }
+
+        .sold-out-card {
+            opacity: 0.65;
+            filter: grayscale(0.5);
+        }
+
+        .sold-out-btn {
+            background: #aaa !important;
+            cursor: not-allowed !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Mission Explain Card */
+        .mission-explain-section {
+            background: #fff;
+            padding: 50px 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .mission-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .mission-container h2 {
+            font-size: 2.2rem;
+            color: var(--ternary-color);
+            margin-bottom: 15px;
+        }
+
+        .mission-steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 35px;
+            text-align: left;
+        }
+
+        .mission-step-card {
+            background: #fdf5f8;
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(217, 22, 86, 0.1);
+        }
+
+        .mission-step-card .num {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--main-color);
+            margin-bottom: 10px;
+        }
+
+        .mission-step-card h3 {
+            font-size: 1.15rem;
+            color: var(--ternary-color);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .mission-step-card p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cursor elements -->
+    <div class="circle"></div><div class="circle"></div><div class="circle"></div><div class="circle"></div>
+    <div class="circle"></div><div class="circle"></div><div class="circle"></div><div class="circle"></div>
+    <div class="circle"></div><div class="circle"></div><div class="circle"></div><div class="circle"></div>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-logo">
+            <img src="images/logo.png" alt="Yah! Logo">
+            <div class="loader-ring"></div>
+        </div>
+        <p class="loader-text">Loading Fresh Scoops...</p>
+    </div>
+
+    <!-- Scroll progress bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <div class="logo">
+            <img src="./images/logo.png" alt="yah-logo" height="40px" width="40px">
+            <a href="./index.html">Yah!</a>
+            <span id="live-location-badge" style="background:var(--accent-pink); color:white; font-size:0.65rem; font-weight:800; padding:2px 8px; border-radius:20px; margin-left:10px; vertical-align:middle; text-transform:uppercase; letter-spacing:0.5px; cursor:pointer;" title="Community Marketplace">📍 Accra Network</span>
+        </div>
+        <div class="nav-links">
+            <a href="./index.html" class="link">Home</a>
+            <a href="./last-scoop.html" class="link active"><i class="fas fa-fire-alt"></i> Last Scoop</a>
+            <a href="./products.html" class="link">Flavors</a>
+            <a href="./impact.html" class="link">Impact 🌱</a>
+            <a href="./track.html" class="link">Track Order</a>
+            <a href="./admin.html" class="link vendor-pill"><i class="fas fa-store"></i> Vendor Hub</a>
+        </div>
+        <div class="icons">
+            <div class="icon">
+                <a href="./dashboard.html" title="Customer Account"><i class="fa fa-user" aria-hidden="true"></i></a>
+            </div>
+            <div class="icon">
+                <span class="i"><i class="fa fa-shopping-cart cart-icon" aria-hidden="true"></i> <span class="no-of-cart-items">0</span></span>
+            </div>
+            <div class="icon">
+                <i class="fa fa-bars menu" aria-hidden="true" id="menu-icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div class="cart" id="cart-drawer">
+        <button class="close-cart-btn" id="close-cart-btn" aria-label="Close cart">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+        <h1>Your Cart</h1>
+
+        <div class="no-empty-cart">
+            <ul class="cart-list-items"></ul>
+            <div>
+                <div class="total">Sub Total: <span class="sub-total">GHS 0.00</span></div>
+                <button id="cart-checkout-btn">Proceed to Demo Checkout</button>
+            </div>
+        </div>
+
+        <div class="empty-cart active">
+            <div class="empty-cart-img-div">
+                <img src="images/empty-cart.png" alt="Empty Cart" class="ice-cream-image" />
+            </div>
+            <p class="empty-cart-text">Your cart is empty!</p>
+            <p class="empty-cart-info">Rescue a Last Scoop deal before it runs out!</p>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="last-scoop-hero">
+        <div class="hackathon-badge">
+            <i class="fas fa-seedling"></i> WarriorHacks 2.0 · Community Food Waste Initiative
+        </div>
+        <h1>🍨 Last Scoop Marketplace</h1>
+        <p>
+            Local ice-cream makers churn fresh, small-batch flavors daily. Perishable surplus that doesn’t sell before closing shouldn't go to waste. 
+            <strong>Rescue them at up to 50% discount</strong> — enjoy sweet deals while saving food!
+        </p>
+
+        <div class="rescue-stats-ribbon">
+            <div class="stat-pill">
+                <i class="fas fa-ice-cream"></i>
+                <span><strong id="hero-servings-rescued">1,428+</strong> Servings Rescued</span>
+            </div>
+            <div class="stat-pill">
+                <i class="fas fa-store-alt"></i>
+                <span><strong id="hero-vendors-count">12</strong> Local Parlours</span>
+            </div>
+            <div class="stat-pill">
+                <i class="fas fa-hourglass-half"></i>
+                <span id="countdown-timer-pill">Rescue Window Closes in: <strong>4h 15m</strong></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter & Controls -->
+    <div class="filters-container">
+        <div class="filter-buttons">
+            <button class="filter-btn-scoop active" data-filter="all">All Deals</button>
+            <button class="filter-btn-scoop" data-filter="under20">Under GHS 20</button>
+            <button class="filter-btn-scoop" data-filter="pickup">Pickup Only</button>
+            <button class="filter-btn-scoop" data-filter="delivery">Delivery Available</button>
+        </div>
+        <div>
+            <select class="vendor-dropdown-select" id="vendor-filter">
+                <option value="all">All Participating Parlours</option>
+                <option value="v-01">Sweet Scoops Parlour (East Legon)</option>
+                <option value="v-02">Mama's Gelato Lab (Osu)</option>
+                <option value="v-03">Frosted Bliss (Airport Residential)</option>
+                <option value="v-04">Tropical Chillers (Cantonments)</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Deals Grid -->
+    <section class="deals-grid" id="last-scoop-grid">
+        <!-- Rendered dynamically by script/last_scoop.js -->
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="mission-explain-section">
+        <div class="mission-container">
+            <div class="hackathon-badge" style="background:var(--ternary-color);">
+                <i class="fas fa-hand-holding-heart"></i> How the Community Cycle Works
+            </div>
+            <h2>Giving Unsold Scoops a Second Chance</h2>
+            <p style="color:#666; max-width:650px; margin:0 auto;">Yah! bridges the gap between artisanal food businesses facing daily unsold perishable stock and treat-loving neighbors who love great discounts.</p>
+
+            <div class="mission-steps-grid">
+                <div class="mission-step-card">
+                    <div class="num">01</div>
+                    <h3>Parlour Lists Surplus</h3>
+                    <p>In the late afternoon, local shops check their remaining freshly churned batch and post remaining portions with a collection deadline.</p>
+                </div>
+                <div class="mission-step-card">
+                    <div class="num">02</div>
+                    <h3>Community Rescues</h3>
+                    <p>Neighbors discover limited-time deals at 30%–50% off and reserve their scoops for evening pickup or doorstep delivery.</p>
+                </div>
+                <div class="mission-step-card">
+                    <div class="num">03</div>
+                    <h3>Zero Waste & Real Impact</h3>
+                    <p>The shop avoids throwing away food, the customer saves money, and our collective food waste impact meter increments in real time.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <a href="./impact.html" style="display:inline-block; padding:12px 30px; background:var(--main-color); color:white; font-weight:700; border-radius:30px; box-shadow:0 6px 20px rgba(217,22,86,0.25);">
+                    <i class="fas fa-chart-line" style="margin-right:6px;"></i> View Full Community Impact Dashboard
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background:#111; color:#bbb; padding:50px 20px 80px; text-align:center; font-size:0.9rem;">
+        <div style="max-width:800px; margin:0 auto;">
+            <img src="./images/logo.png" alt="Yah! Logo" height="45px" style="margin-bottom:15px;">
+            <h3 style="color:#fff; font-size:1.3rem; margin-bottom:8px;">Yah! — Community Ice-Cream Marketplace</h3>
+            <p style="color:#888; margin-bottom:20px;">Redesigned for the <strong>WarriorHacks 2.0</strong> theme: Create a project that solves an issue in your community, county, state, or nation.</p>
+            <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom:25px;">
+                <a href="index.html" style="color:#ff85a2;">Home</a>
+                <a href="last-scoop.html" style="color:#ff85a2;">Last Scoop Deals</a>
+                <a href="products.html" style="color:#ff85a2;">All Products</a>
+                <a href="impact.html" style="color:#ff85a2;">Community Impact</a>
+                <a href="admin.html" style="color:#ff85a2;">Vendor Dashboard</a>
+                <a href="track.html" style="color:#ff85a2;">Track Order</a>
+            </div>
+            <p style="color:#555; font-size:0.8rem;">* All statistical numbers and metrics on this demo site are simulated prototype data for judging demonstration.</p>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="last-scoop.html" class="nav-item active">
+            <i class="fas fa-fire-alt"></i>
+            <span>Last Scoop</span>
+        </a>
+        <a href="products.html" class="nav-item">
+            <i class="fas fa-ice-cream"></i>
+            <span>Menu</span>
+        </a>
+        <a href="impact.html" class="nav-item">
+            <i class="fas fa-chart-pie"></i>
+            <span>Impact</span>
+        </a>
+        <a href="track.html" class="nav-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Track</span>
+        </a>
+    </nav>
+
+    <!-- Scripts -->
+    <script type="module" src="script/nav.js"></script>
+    <script type="module" src="script/cursor.js"></script>
+    <script type="module" src="script/topscrollindicator.js"></script>
+    <script type="module" src="script/last_scoop.js"></script>
+</body>
+
+</html>

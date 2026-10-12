@@ -1,0 +1,7 @@
+/* Custom Cursor Styles - Hidden to prevent screen clutter & text obstruction */
+.circle {
+    display: none !important;
+    pointer-events: none;
+    visibility: hidden;
+}
+

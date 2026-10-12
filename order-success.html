@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success - Yah!</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="icon" href="./images/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #fff5f8 0%, #f9f3ff 60%, #fff 100%);
+            min-height: 100vh;
+        }
+
+        .success-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 90vh;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 80px;
+        }
+
+        .success-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(238, 102, 166, 0.2);
+            border-radius: 30px;
+            padding: 60px 60px;
+            max-width: 620px;
+            width: 100%;
+            box-shadow: 0 30px 60px rgba(217, 22, 86, 0.1);
+            animation: slideUp 0.7s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+        }
+
+        .success-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #4CAF50, #00c853);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: 0 15px 35px rgba(76, 175, 80, 0.35);
+            animation: scaleUp 0.6s 0.2s cubic-bezier(0.2, 1, 0.3, 1) backwards;
+        }
+
+        .success-container h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(to right, var(--ternary-color), var(--main-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .success-container p {
+            font-size: 1.05rem;
+            color: #777;
+            line-height: 1.7;
+            max-width: 480px;
+            margin: 0 auto 25px;
+        }
+
+        .order-id {
+            background: rgba(217, 22, 86, 0.06);
+            border: 1.5px dashed rgba(217, 22, 86, 0.3);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--main-color);
+            margin-bottom: 35px;
+            display: inline-block;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-home {
+            padding: 14px 30px;
+            background: linear-gradient(135deg, var(--main-color), var(--ternary-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(217, 22, 86, 0.3);
+        }
+
+        .btn-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(217, 22, 86, 0.4);
+        }
+
+        .btn-outline {
+            padding: 14px 30px;
+            background: white;
+            color: var(--main-color);
+            border: 2px solid var(--main-color);
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-outline:hover {
+            background: rgba(217, 22, 86, 0.05);
+            transform: translateY(-3px);
+        }
+
+        .divider {
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, var(--main-color), var(--ternary-color));
+            border-radius: 10px;
+            margin: 0 auto 25px;
+        }
+
+        @keyframes scaleUp {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <link rel="stylesheet" href="styles/cursor.css">
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="logo">
+            <img src="./images/logo.png" alt="Yah!-logo" height="40px" width="40px">
+            <a href="./index.html">Yah!</a>
+        </div>
+    </div>
+
+    <section class="success-container">
+        <div class="success-card">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h1>Sweet Success! 🍦</h1>
+            <p>Thank you for choosing <strong>Yah! Community Marketplace</strong>. Your order has been placed and is being scooped up with love. We'll confirm your order shortly!</p>
+            
+            <div class="order-id" id="order-id-display">Order #YAH-12345</div>
+
+            <!-- Rescue Impact Alert (Shown if order contained Last Scoop surplus) -->
+            <div id="rescue-impact-badge" style="display:none; background:rgba(16, 185, 129, 0.09); border:1.5px solid #10b981; border-radius:18px; padding:16px 20px; margin-bottom:25px; text-align:center;">
+                <div style="font-weight:800; color:#047857; font-size:1.05rem; display:flex; align-items:center; justify-content:center; gap:8px;">
+                    <i class="fas fa-seedling"></i> Surplus Scoop Rescued!
+                </div>
+                <p style="color:#065f46; font-size:0.9rem; margin:6px 0 10px;">
+                    You prevented food waste and saved money! Your rescue has been added to our live Community Impact metrics.
+                </p>
+                <a href="impact.html" style="font-size:0.85rem; font-weight:700; color:#047857; text-decoration:underline;">
+                    <i class="fas fa-chart-line"></i> View Updated Community Impact Dashboard &rarr;
+                </a>
+            </div>
+            
+            <!-- Confirmation Link Section -->
+            <div id="confirmation-link-section" style="background:rgba(76,175,80,0.08); border:1px solid rgba(76,175,80,0.2); border-radius:16px; padding:16px 20px; margin-bottom:28px;">
+                <div style="font-size:0.8rem; font-weight:700; color:#4CAF50; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px;">Order Confirmation Link</div>
+                <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                    <input type="text" id="confirmation-link-input" readonly style="flex:1; min-width:200px; padding:10px 14px; border:1px solid rgba(76,175,80,0.3); border-radius:10px; font-size:0.85rem; background:white; color:#555;" value="">
+                    <button id="copy-link-btn" style="padding:10px 16px; background:#4CAF50; color:white; border:none; border-radius:10px; font-weight:600; font-size:0.85rem; cursor:pointer; transition:all 0.3s;">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+                <p style="font-size:0.75rem; color:#666; margin-top:8px; margin-bottom:0;">Use this link to track your order anytime</p>
+            </div>
+            
+            <!-- Order Summary (shown if items available) -->
+            <div id="order-summary-box" style="display:none; background:rgba(217,22,86,0.04); border:1px solid rgba(217,22,86,0.12); border-radius:16px; padding:16px 20px; margin-bottom:28px; text-align:left;">
+                <div style="font-size:0.8rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px;">Your Order</div>
+                <div id="order-summary-items"></div>
+                <div style="display:flex; justify-content:space-between; padding-top:10px; margin-top:6px; font-weight:800; font-size:1rem; color:var(--main-color);">
+                    <span>Total Paid</span>
+                    <span id="order-summary-total"></span>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <a href="index.html" class="btn-home"><i class="fas fa-home"></i> Home</a>
+                <a href="#" id="track-order-btn" class="btn-home" style="background: var(--ternary-color);"><i class="fas fa-truck"></i> Track Order</a>
+                <a href="products.html" class="btn-outline"><i class="fas fa-ice-cream"></i> Order More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="products.html" class="nav-item">
+            <i class="fas fa-ice-cream"></i>
+            <span>Products</span>
+        </a>
+        <a href="track.html" class="nav-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Track</span>
+        </a>
+        <a href="dashboard.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        // Get the most recent order from localStorage
+        const orderHistory = JSON.parse(localStorage.getItem('Yah!_orders')) || [];
+        const lastOrder = orderHistory[0];
+        
+        const generateShortId = () => {
+            const random = Math.floor(1000 + Math.random() * 9000);
+            return 'YAH-' + random;
+        };
+
+        const orderId = lastOrder ? lastOrder.id : generateShortId();
+        document.getElementById('order-id-display').textContent = 'Order #' + orderId;
+        
+        // Generate confirmation link
+        const confirmationLink = `${window.location.origin}/track.html?id=${orderId}&email=${encodeURIComponent(lastOrder?.email || '')}`;
+        const linkInput = document.getElementById('confirmation-link-input');
+        if (linkInput) {
+            linkInput.value = confirmationLink;
+        }
+        
+        // Copy link button functionality
+        const copyBtn = document.getElementById('copy-link-btn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', () => {
+                linkInput.select();
+                linkInput.setSelectionRange(0, 99999); // For mobile devices
+                navigator.clipboard.writeText(linkInput.value).then(() => {
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    copyBtn.style.background = '#00c853';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                        copyBtn.style.background = '#4CAF50';
+                    }, 2000);
+                }).catch(() => {
+                    // Fallback for older browsers
+                    document.execCommand('copy');
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                    }, 2000);
+                });
+            });
+        }
+        
+        // Setup tracking link
+        if (lastOrder) {
+            const trackBtn = document.getElementById('track-order-btn');
+            trackBtn.href = `track.html?id=${lastOrder.id}&email=${encodeURIComponent(lastOrder.email || '')}`;
+        }
+
+        // Check if order included Last Scoop items
+        const rescueSummary = localStorage.getItem('Yah!_last_rescue_summary');
+        const hasRescueItem = lastOrder && lastOrder.items && (
+            (typeof lastOrder.items === 'string' && lastOrder.items.includes('Last Scoop')) ||
+            (Array.isArray(lastOrder.items) && lastOrder.items.some(i => i.isLastScoop || (i.name && i.name.includes('Last Scoop'))))
+        );
+        if (rescueSummary || hasRescueItem) {
+            const badge = document.getElementById('rescue-impact-badge');
+            if (badge) badge.style.display = 'block';
+        }
+
+        // Show order summary if available
+        if (lastOrder && lastOrder.items) {
+            try {
+                const items = typeof lastOrder.items === 'string' ? JSON.parse(lastOrder.items) : lastOrder.items;
+                if (items && items.length > 0) {
+                    const summaryEl = document.getElementById('order-summary-items');
+                    if (summaryEl) {
+                        summaryEl.innerHTML = items.slice(0, 3).map(i =>
+                            `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(217,22,86,0.08);font-size:0.9rem;">
+                                <span style="color:#555;">${i.name} &times;${i.pcs || i.quantity || 1}</span>
+                                <span style="font-weight:700;color:var(--main-color);">GHS ${parseFloat(i.amount || i.price || 0).toFixed(2)}</span>
+                            </div>`
+                        ).join('');
+                        document.getElementById('order-summary-total').textContent = lastOrder.total || '';
+                        document.getElementById('order-summary-box').style.display = 'block';
+                    }
+                }
+            } catch(e) {}
+        }
+        
+        // Confetti celebration — fires immediately since script is already loaded
+        (function fireConfetti() {
+            if (typeof confetti !== 'function') return;
+            const duration = 4 * 1000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999,
+                colors: ['#d91656', '#8a2be2', '#ff6b9d', '#ffd700', '#00c853'] };
+            const randomInRange = (min, max) => Math.random() * (max - min) + min;
+            const interval = setInterval(function() {
+                const timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) return clearInterval(interval);
+                const particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        })();
+    </script>
+    <script src="script/cursor.js"></script>
+    <script src="script/animations.js"></script>
+</body>
+</html>
+
+
+
+

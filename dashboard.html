@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yah! Dashboard - My Account</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="icon" href="./images/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles/cursor.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-logo">
+            <img src="images/logo.png" alt="Yah! Logo">
+            <div class="loader-ring"></div>
+        </div>
+        <p class="loader-text">Loading Sweetness...</p>
+    </div>
+
+    <!-- Nav Bar -->
+    <div class="nav-bar">
+        <div class="logo">
+            <img src="./images/logo.png" alt="Yah!-logo" height="40px" width="40px">
+            <a href="./index.html">Yah!</a>
+        </div>
+        <div class="nav-links">
+            <a href="./index.html" class="link">home</a>
+            <a href="./products.html" class="link">products</a>
+            <a href="./last-scoop.html" class="link" style="color: #ff4757; font-weight: 700;">Last Scoop ⏳</a>
+            <a href="./impact.html" class="link">Impact 🌱</a>
+            <a href="./dine-in.html" class="link">Dine In</a>
+            <a href="./catering.html" class="link">Catering</a>
+        </div>
+        <div class="icons">
+            <div class="icon">
+                <a href="./dashboard.html"><i class="fa fa-user" aria-hidden="true"></i></a>
+            </div>
+            <div class="icon">
+                <span class="i"><i class="fa fa-shopping-cart cart-icon" aria-hidden="true"></i> <span class="no-of-cart-items">0</span></span>
+            </div>
+            <div class="icon">
+                <i class="fa fa-bars menu" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="user-info-sidebar">
+                <div class="avatar-large">👤</div>
+                <h3 id="user-name-display">Welcome Back!</h3>
+                <p id="user-email-display">user@example.com</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="active" data-tab="overview"><i class="fas fa-th-large"></i> Overview</a>
+                <a href="#" data-tab="orders"><i class="fas fa-shopping-bag"></i> My Orders</a>
+                <a href="#" data-tab="wishlist"><i class="fas fa-heart"></i> Wishlist</a>
+                <a href="#" data-tab="settings"><i class="fas fa-cog"></i> Settings</a>
+                <a href="#" id="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Overview Tab -->
+            <section id="overview" class="tab-content active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="icon-box purple"><i class="fas fa-ice-cream"></i></div>
+                        <div class="stat-info">
+                            <h4 id="total-orders-count">0</h4>
+                            <p>Total Orders</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon-box pink"><i class="fas fa-star"></i></div>
+                        <div class="stat-info">
+                            <h4 id="Yah!-points-count">250</h4>
+                            <p>Yah! Points</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon-box blue"><i class="fas fa-wallet"></i></div>
+                        <div class="stat-info">
+                            <h4 id="total-spent-count">GHS 0.00</h4>
+                            <p>Total Spent</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-orders">
+                    <div class="section-header">
+                        <h3>Recent Activity</h3>
+                        <a href="#" class="view-all" onclick="switchTab('orders')">View All</a>
+                    </div>
+                    <div class="orders-table-wrapper">
+                        <table id="recent-orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Orders will be injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Orders Tab -->
+            <section id="orders" class="tab-content">
+                <div class="app-order-history-top-header">
+                    <button class="app-back-btn" onclick="switchTab('overview')">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <h2>Order History</h2>
+                </div>
+                <div class="orders-list" id="full-orders-list">
+                    <!-- Detailed order cards will be injected here -->
+                </div>
+            </section>
+
+            <!-- Wishlist Tab -->
+            <section id="wishlist" class="tab-content">
+                <h2>My Favorites</h2>
+                <div class="wishlist-grid" id="wishlist-container">
+                    <p class="empty-msg">You haven't saved any favorites yet. <a href="products.html">Start exploring!</a></p>
+                </div>
+            </section>
+
+            <section id="settings" class="tab-content">
+                <h2>Account Settings</h2>
+                <form id="settings-form" class="premium-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="settings-name" placeholder="Enter your full name" autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address *</label>
+                            <input type="email" id="settings-email" placeholder="Enter your email" autocomplete="email">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="settings-phone" placeholder="e.g. +233 24 123 4567" autocomplete="tel">
+                        </div>
+                        <div class="form-group">
+                            <label>Default Shipping Address</label>
+                            <input type="text" id="settings-address" placeholder="Enter your shipping address" autocomplete="street-address">
+                        </div>
+                    </div>
+                    <button type="submit" class="save-btn"><i class="fas fa-save"></i> Save Changes</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-content-area">
+                <div class="modal-header">
+                    <h3 id="modal-order-id">Order #0000</h3>
+                    <p id="modal-order-date">Date</p>
+                </div>
+                <div class="modal-body">
+                    <div style="font-weight:700; margin-bottom:10px;">Items Ordered</div>
+                    <div id="modal-items-list" class="modal-item-list">
+                        <!-- Items injected here -->
+                    </div>
+                    <div style="margin-top:20px; padding-top:15px; border-top:2px solid #eee; display:flex; justify-content:space-between; font-weight:700;">
+                        <span>Total Amount</span>
+                        <span id="modal-total">GHS 0.00</span>
+                    </div>
+                    <div id="modal-track-container" style="margin-top: 20px; text-align: center;">
+                        <a id="modal-track-btn" href="#" class="save-btn" style="display: block; text-decoration: none; text-align: center; width: 100%; box-sizing: border-box; background-color: #e63946; border-radius: 30px; font-weight: 700; padding: 12px 20px; color: white; transition: all 0.3s ease;">Track Order Live 🛵</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="products.html" class="nav-item">
+            <i class="fas fa-ice-cream"></i>
+            <span>Products</span>
+        </a>
+        <a href="track.html" class="nav-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Track</span>
+        </a>
+        <a href="dashboard.html" class="nav-item active">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="script/dashboard.js"></script>
+    <script type="module" src="script/nav.js"></script>
+    <script type="module" src="script/cart.js"></script>
+    <script src="script/animations.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                document.body.classList.add('loaded');
+            }, 800);
+        });
+    </script>
+    <script src="script/cursor.js"></script>
+    <script src="script/animations.js"></script>
+</body>
+</html>
+
+
+
+

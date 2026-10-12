@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yah! Admin — Parlour Management</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/admin.css">
+    <link rel="stylesheet" href="styles/admin-pro.css">
+    <link rel="icon" href="./images/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="styles/cursor.css">
+</head>
+<body class="admin-body">
+    
+    <div class="admin-overlay" id="admin-overlay"></div>
+    <div class="admin-layout">
+        <!-- Admin Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <img src="images/logo.png" alt="Logo">
+                <div>
+                    <span class="logo-title">Yah! Vendor Hub</span>
+                    <span class="logo-sub">Sweet Scoops Parlour</span>
+                </div>
+            </div>
+            <nav class="admin-nav">
+                <div class="nav-section-label">MARKETPLACE & STORE</div>
+                <a href="#" class="active" data-tab="dashboard"><i class="fas fa-chart-line"></i> Dashboard</a>
+                <a href="#" data-tab="orders"><i class="fas fa-shopping-cart"></i> Orders <span class="badge" id="pending-count">0</span></a>
+                <a href="#" data-tab="last-scoop"><i class="fas fa-fire-alt" style="color:#e11d48;"></i> Last Scoop Deals <span class="badge" id="last-scoop-count" style="background:#e11d48;">5</span></a>
+                <a href="#" data-tab="inventory"><i class="fas fa-boxes"></i> Regular Inventory</a>
+                <div class="nav-section-label">MANAGE</div>
+                <a href="#" data-tab="inquiries"><i class="fas fa-envelope-open-text"></i> Inquiries</a>
+                <a href="#" data-tab="customers"><i class="fas fa-users"></i> Customers</a>
+                <a href="#" data-tab="delivery-map"><i class="fas fa-map-marked-alt"></i> Delivery Map</a>
+                <a href="#" data-tab="settings"><i class="fas fa-cog"></i> Settings</a>
+                <div class="nav-divider"></div>
+                <a href="index.html" target="_blank"><i class="fas fa-external-link-alt"></i> View Live Site</a>
+                <a href="#" id="admin-logout" class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </nav>
+            <div class="sidebar-footer">
+                <span class="version-tag">v2.0 · Hackathon Demo</span>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="header-left" style="display:flex; align-items:center; gap: 15px;">
+                    <div class="mobile-menu-toggle" id="mobile-menu-toggle" style="cursor: pointer; font-size: 1.2rem; color: var(--text-dark);">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <div class="header-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="admin-search-input" placeholder="Search orders, customers, products..." autocomplete="off">
+                    </div>
+                </div>
+                <div class="admin-profile">
+                    <div class="header-clock" id="admin-clock">--:--</div>
+                    <div class="header-notif" id="header-notif-btn" title="New Orders">
+                        <i class="fas fa-bell"></i>
+                        <span class="notif-dot" id="notif-dot" style="display:none"></span>
+                    </div>
+                    <div class="header-profile-wrap">
+                        <div class="admin-avatar" id="admin-avatar-letter">A</div>
+                        <div class="header-profile-info">
+                            <div class="header-profile-name" id="admin-name">Admin</div>
+                            <div class="header-profile-role">Parlour Manager</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Dashboard Tab -->
+                <section id="dashboard" class="admin-tab active">
+                    <div class="status-bar" style="display:flex; justify-content:space-between; align-items:center; background:rgba(100,13,95,0.06); border:1px solid rgba(100,13,95,0.18); border-radius:12px; padding:12px 20px; margin-bottom:25px; flex-wrap:wrap; gap:12px;">
+                        <div style="display:flex; align-items:center; gap:10px; color:var(--ternary-color); font-weight:600; font-size:0.88rem;">
+                            <span id="system-status-dot" style="display:inline-block; width:9px; height:9px; background:#e11d48; border-radius:50%; box-shadow:0 0 8px #e11d48;"></span>
+                            <span id="system-status-text">SYSTEM MODE: HACKATHON DEMO / PROTOTYPE</span>
+                        </div>
+                        <div id="cloud-database-indicator" style="font-size:0.82rem; color:var(--ternary-color); font-weight:600; display:flex; align-items:center; gap:6px;">
+                            <i class="fas fa-database"></i> <span id="cloud-status-text">Data Store: Local Reactive (Supabase Sync Ready)</span>
+                        </div>
+                    </div>
+                    <div class="welcome-section">
+                        <div class="welcome-text">
+                            <h1>Welcome back, <span id="admin-name">Admin</span>!</h1>
+                            <p>Here's what's happening with Yah! East Legon today.</p>
+                        </div>
+                    </div>
+                    <div class="admin-stats-grid">
+                        <div class="admin-stat-card pro-stat" data-color="purple">
+                            <div class="stat-main">
+                                <h3><i class="fas fa-coins"></i> Total Revenue</h3>
+                                <h2 id="total-revenue">GHS 0.00</h2>
+                                <p class="trend up"><i class="fas fa-arrow-up"></i> All time earnings</p>
+                            </div>
+                            <div class="stat-icon purple"><i class="fas fa-dollar-sign"></i></div>
+                        </div>
+                        <div class="admin-stat-card pro-stat" data-color="pink">
+                            <div class="stat-main">
+                                <h3><i class="fas fa-receipt"></i> Total Orders</h3>
+                                <h2 id="total-orders">0</h2>
+                                <p class="trend up"><i class="fas fa-clock"></i> <span id="pending-orders-text">0 pending</span></p>
+                            </div>
+                            <div class="stat-icon pink"><i class="fas fa-shopping-bag"></i></div>
+                        </div>
+                        <div class="admin-stat-card pro-stat" data-color="blue">
+                            <div class="stat-main">
+                                <h3><i class="fas fa-users"></i> Customers</h3>
+                                <h2 id="total-customers">0</h2>
+                                <p>Registered accounts</p>
+                            </div>
+                            <div class="stat-icon blue"><i class="fas fa-user-friends"></i></div>
+                        </div>
+                        <div class="admin-stat-card pro-stat" data-color="green">
+                            <div class="stat-main">
+                                <h3><i class="fas fa-ice-cream"></i> Best Flavor</h3>
+                                <h2 id="best-flavor" style="font-size:1.3rem;">—</h2>
+                                <p>Most ordered</p>
+                            </div>
+                            <div class="stat-icon green"><i class="fas fa-star"></i></div>
+                        </div>
+                        <div class="admin-stat-card pro-stat" data-color="pink" style="background: linear-gradient(135deg, rgba(225,29,72,0.06), rgba(100,13,95,0.04));">
+                            <div class="stat-main">
+                                <h3><i class="fas fa-fire-alt" style="color:#e11d48;"></i> Rescued Servings</h3>
+                                <h2 id="parlour-rescued-servings">412</h2>
+                                <p class="trend up"><i class="fas fa-seedling"></i> 206 kg waste prevented</p>
+                            </div>
+                            <div class="stat-icon" style="background:rgba(225,29,72,0.15); color:#e11d48;"><i class="fas fa-recycle"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="admin-charts-row">
+                        <div class="chart-container">
+                            <div class="chart-header">
+                                <h3>Weekly Revenue Overview</h3>
+                                <span class="chart-subtitle" id="chart-week-label">This Week</span>
+                            </div>
+                            <div class="mock-chart" id="revenue-chart">
+                                <!-- Bars injected by JS -->
+                            </div>
+                            <div class="chart-legend">
+                                <span class="legend-dot pink"></span> Daily Sales (GHS)
+                            </div>
+                        </div>
+                        <div class="recent-sales">
+                            <div class="chart-header">
+                                <h3>Top Customers</h3>
+                                <a href="#" data-tab="customers" class="view-all-link">View All →</a>
+                            </div>
+                            <div id="top-customers-list">
+                                <!-- Customers injected here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Orders Feed -->
+                    <div class="live-orders-feed">
+                        <div class="chart-header">
+                            <h3><span class="live-dot"></span> Live Order Feed</h3>
+                            <a href="#" data-tab="orders" class="view-all-link">Manage All →</a>
+                        </div>
+                        <div id="live-orders-list" class="live-orders-list">
+                            <!-- Recent orders injected here -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Orders Management Tab -->
+                <section id="orders" class="admin-tab">
+                    <div class="tab-header">
+                        <h2>Order Management</h2>
+                        <div class="tab-header-actions">
+                            <div class="order-search-wrap">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="order-search" placeholder="Search by name, email, ID..." autocomplete="off">
+                            </div>
+                            <button class="export-btn" id="export-orders-btn"><i class="fas fa-download"></i> Export CSV</button>
+                        </div>
+                    </div>
+                    <div class="filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="received">🆕 Received</button>
+                        <button class="filter-btn" data-filter="confirmed">✅ Confirmed</button>
+                        <button class="filter-btn" data-filter="prepared">🍦 Prepared</button>
+                        <button class="filter-btn" data-filter="delivery">🚴 Delivery</button>
+                        <button class="filter-btn" data-filter="completed">🎉 Completed</button>
+                        <button class="filter-btn" data-filter="rejected">❌ Rejected</button>
+                    </div>
+                    <div class="admin-table-container">
+                        <table id="admin-orders-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Customer</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Orders injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                <!-- Last Scoop Tab -->
+                <section id="last-scoop" class="admin-tab">
+                    <div class="tab-header">
+                        <div>
+                            <h2>🍨 Last Scoop Surplus Listings</h2>
+                            <p style="color:#64748b; font-size:0.9rem; margin-top:4px;">Give unsold end-of-day batches a second chance at discount instead of discarding them.</p>
+                        </div>
+                        <button class="add-btn" id="open-new-deal-btn" style="background:#e11d48;"><i class="fas fa-plus"></i> New Surplus Deal</button>
+                    </div>
+
+                    <!-- Create Deal Form Card -->
+                    <div id="new-deal-card" style="background:#fff; border-radius:18px; padding:25px; border:1.5px solid rgba(225,29,72,0.2); box-shadow:0 8px 25px rgba(0,0,0,0.05); margin-bottom:30px; display:none;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+                            <h3 style="color:var(--ternary-color); font-size:1.2rem; display:flex; align-items:center; gap:8px;">
+                                <i class="fas fa-magic" style="color:#e11d48;"></i> Create Surplus Deal
+                            </h3>
+                            <button type="button" id="close-new-deal-btn" style="background:none; border:none; font-size:1.2rem; cursor:pointer; color:#999;">&times;</button>
+                        </div>
+                        <form id="create-deal-form">
+                            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:15px; margin-bottom:15px;">
+                                <div>
+                                    <label style="font-weight:600; font-size:0.85rem; color:#475569; display:block; margin-bottom:6px;">Flavor / Item Name *</label>
+                                    <input type="text" id="deal-flavor-name" required placeholder="e.g. Mango Swirl" style="width:100%; padding:10px 14px; border:1px solid #cbd5e1; border-radius:10px; font-size:0.9rem;">
+                                </div>
+                                <div>
+                                    <label style="font-weight:600; font-size:0.85rem; color:#475569; display:block; margin-bottom:6px;">Original Regular Price (GHS) *</label>
+                                    <input type="number" id="deal-orig-price" required min="1" step="0.5" placeholder="30" style="width:100%; padding:10px 14px; border:1px solid #cbd5e1; border-radius:10px; font-size:0.9rem;">
+                                </div>
+                                <div>
+                                    <label style="font-weight:600; font-size:0.85rem; color:#475569; display:block; margin-bottom:6px;">Last Scoop Discount Price (GHS) *</label>
+                                    <input type="number" id="deal-disc-price" required min="1" step="0.5" placeholder="18" style="width:100%; padding:10px 14px; border:1px solid #cbd5e1; border-radius:10px; font-size:0.9rem;">
+                                </div>
+                                <div>
+                                    <label style="font-weight:600; font-size:0.85rem; color:#475569; display:block; margin-bottom:6px;">Surplus Servings Available *</label>
+                                    <input type="number" id="deal-quantity" required min="1" max="50" placeholder="3" style="width:100%; padding:10px 14px; border:1px solid #cbd5e1; border-radius:10px; font-size:0.9rem;">
+                                </div>
+                            </div>
+
+                            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:15px; margin-bottom:15px;">
+                                <div>
+                                    <label style="font-weight:600; font-size:0.85rem; color:#475569; display:block; margin-bottom:6px;">Pickup Deadline *</label>
+                                    <input type="text" id="deal-deadline" required placeholder="e.g. 8:00 PM today" value="8:00 PM today" style="width:100%; padding:10px 14px; border:1px solid #cbd5e1; border-radius:10px; font-size:0.9rem;">
+                                </div>
+                                <div>
+                                    <label style="font-weight:600; font-size:0.85rem; color:#475569; display:block; margin-bottom:6px;">Fulfillment Options</label>
+                                    <select id="deal-fulfillment" style="width:100%; padding:10px 14px; border:1px solid #cbd5e1; border-radius:10px; font-size:0.9rem; background:#fff;">
+                                        <option value="Pickup & Delivery">Pickup & Delivery</option>
+                                        <option value="Pickup Only">Pickup Only</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label style="font-weight:600; font-size:0.85rem; color:#475569; display:block; margin-bottom:6px;">Image Asset</label>
+                                    <select id="deal-image-select" style="width:100%; padding:10px 14px; border:1px solid #cbd5e1; border-radius:10px; font-size:0.9rem; background:#fff;">
+                                        <option value="./images/mango.jpg">Mango Swirl (mango.jpg)</option>
+                                        <option value="./images/chocolate.jpg">Chocolate (chocolate.jpg)</option>
+                                        <option value="./images/strawberry.jpg">Strawberry (strawberry.jpg)</option>
+                                        <option value="./images/blue berry.jpg">Blueberry (blue berry.jpg)</option>
+                                        <option value="./images/mint.jpg">Mint Chip (mint.jpg)</option>
+                                        <option value="./images/peanut-butter.jpg">Peanut Butter (peanut-butter.jpg)</option>
+                                        <option value="./images/vannila.jpg">Vanilla (vannila.jpg)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom:20px;">
+                                <label style="font-weight:600; font-size:0.85rem; color:#475569; display:block; margin-bottom:6px;">Description / Notes</label>
+                                <textarea id="deal-desc" rows="2" placeholder="Fresh afternoon batch, limited portions remaining before close." style="width:100%; padding:10px 14px; border:1px solid #cbd5e1; border-radius:10px; font-size:0.9rem; font-family:inherit;"></textarea>
+                            </div>
+
+                            <div style="display:flex; justify-content:flex-end; gap:10px;">
+                                <button type="button" id="cancel-deal-btn" style="padding:10px 20px; background:#f1f5f9; border:none; border-radius:10px; font-weight:600; cursor:pointer;">Cancel</button>
+                                <button type="submit" style="padding:10px 25px; background:linear-gradient(135deg, #e11d48, #640D5F); color:white; border:none; border-radius:10px; font-weight:700; cursor:pointer; box-shadow:0 4px 12px rgba(225,29,72,0.3);">
+                                    <i class="fas fa-check" style="margin-right:6px;"></i> Publish to Marketplace
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Deals Table -->
+                    <div class="admin-table-container">
+                        <table id="admin-last-scoop-table">
+                            <thead>
+                                <tr>
+                                    <th>Deal / Flavor</th>
+                                    <th>Pricing</th>
+                                    <th>Remaining Servings</th>
+                                    <th>Pickup Deadline</th>
+                                    <th>Fulfillment</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="last-scoop-table-body">
+                                <!-- Injected by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Inventory Tab -->
+                <section id="inventory" class="admin-tab">
+                    <div class="tab-header">
+                        <h2>Inventory Control</h2>
+                        <button class="add-btn"><i class="fas fa-plus"></i> Add Product</button>
+                    </div>
+                    <div class="inventory-grid" id="admin-inventory-list">
+                        <!-- Products injected here -->
+                    </div>
+                </section>
+
+                <!-- Inquiries Tab -->
+                <section id="inquiries" class="admin-tab">
+                    <div class="tab-header">
+                        <h2>Inquiries <span style="font-size:0.85rem; color: var(--accent-pink); font-weight:400;">(Catering · Delivery · Reservations)</span></h2>
+                    </div>
+                    <div class="admin-table-container">
+                        <table id="admin-inquiries-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Lead Name</th>
+                                    <th>Event Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Inquiries injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Customers Tab -->
+                <section id="customers" class="admin-tab">
+                    <div class="tab-header">
+                        <h2>Customer Directory</h2>
+                    </div>
+                    <div class="admin-table-container">
+                        <table id="admin-customers-table">
+                            <thead>
+                                <tr>
+                                    <th>Customer</th>
+                                    <th>Email</th>
+                                    <th>Total Orders</th>
+                                    <th>Total Spent</th>
+                                    <th>Last Order Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Customers injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Delivery Map Tab -->
+                <section id="delivery-map" class="admin-tab">
+                    <div class="tab-header">
+                        <h2>Delivery Map</h2>
+                    </div>
+                    <div class="admin-table-container" style="padding: 0; overflow: hidden; height: 500px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: relative; z-index: 1;">
+                        <div id="admin-delivery-map" style="width: 100%; height: 100%;"></div>
+                    </div>
+                </section>
+
+                <!-- Settings Tab -->
+                <section id="settings" class="admin-tab">
+                    <div class="tab-header">
+                        <h2>Admin Settings</h2>
+                    </div>
+                    <div style="max-width: 600px; padding: 20px;">
+                        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                            <h3 style="margin-bottom: 20px; color: var(--text-dark);">Change Admin Credentials</h3>
+                            <form id="admin-settings-form">
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--text-dark);">Admin Email</label>
+                                    <input type="email" id="admin-email-input" style="width: 100%; padding: 12px 16px; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 0.95rem;" placeholder="admin@yah.com">
+                                </div>
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--text-dark);">New Password</label>
+                                    <input type="password" id="admin-password-input" style="width: 100%; padding: 12px 16px; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 0.95rem;" placeholder="Enter new strong password">
+                                </div>
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--text-dark);">Confirm Password</label>
+                                    <input type="password" id="admin-confirm-password-input" style="width: 100%; padding: 12px 16px; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 0.95rem;" placeholder="Confirm new password">
+                                </div>
+                                <button type="submit" style="padding: 12px 24px; background: var(--main-color); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; transition: all 0.3s;">
+                                    <i class="fas fa-save"></i> Save Changes
+                                </button>
+                            </form>
+                            <div style="margin-top: 25px; padding: 20px; background: #f8fafc; border: 1.5px dashed #cbd5e1; border-radius: 14px;">
+                                <h4 style="margin: 0 0 8px 0; color: #1e293b; font-size: 1rem;"><i class="fas fa-magic" style="color: var(--main-color);"></i> Hackathon Demo State Control</h4>
+                                <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 15px; line-height: 1.4;">
+                                    Practicing your pitch? Reset surplus deals, impact metrics, and mock orders back to fresh initial state with one click.
+                                </p>
+                                <button type="button" id="reset-demo-state-btn" onclick="if(confirm('Reset all demo orders and inventory back to fresh state?')) { if(window.resetDemoData){window.resetDemoData(); alert('Demo state reset! Refreshing...'); window.location.reload();} }" style="background: white; color: #e11d48; border: 1.5px solid #e11d48; padding: 10px 18px; border-radius: 10px; font-weight: 700; font-size: 0.85rem; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-undo"></i> Reset All Demo Data
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Order Detail Modal -->
+    <div id="order-modal" class="admin-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="document.getElementById('order-modal').style.display='none'">&times;</span>
+            <div id="modal-order-details"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script type="module" src="script/toast.js"></script>
+    <script type="module" src="script/admin.js"></script>
+    <script src="script/cursor.js"></script>
+    <script src="script/animations.js"></script>
+</body>
+</html>
+
+
+
+

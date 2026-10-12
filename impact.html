@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yah! — Community Impact Dashboard</title>
+    <meta name="description" content="Track live food waste prevention, rescued ice cream servings, and customer savings across Accra. WarriorHacks 2.0 Theme Initiative.">
+    <link rel="icon" href="./images/logo.png" type="image/png">
+
+    <!-- CSS stylesheets -->
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/mediaQueries.css">
+    <link rel="stylesheet" href="styles/cursor.css">
+    <link rel="stylesheet" href="styles/topscrollindicator.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .impact-hero {
+            background: linear-gradient(135deg, #fff5f8 0%, #f3e8ff 50%, #eef2ff 100%);
+            padding: 130px 20px 60px;
+            text-align: center;
+            border-bottom: 1px solid rgba(217, 22, 86, 0.1);
+        }
+
+        .impact-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--ternary-color), var(--main-color));
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(100, 13, 95, 0.2);
+        }
+
+        .demo-disclaimer-pill {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fde68a;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .impact-hero h1 {
+            font-size: 2.9rem;
+            color: var(--ternary-color);
+            margin-bottom: 14px;
+            line-height: 1.2;
+        }
+
+        .impact-hero p {
+            max-width: 720px;
+            margin: 0 auto 20px;
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Metrics Grid */
+        .metrics-section {
+            max-width: 1200px;
+            margin: -40px auto 60px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 30px 25px;
+            border: 1px solid rgba(217, 22, 86, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(217, 22, 86, 0.12);
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--main-color), var(--secondary-color));
+        }
+
+        .metric-icon-wrap {
+            width: 55px;
+            height: 55px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 18px;
+        }
+
+        .icon-pink { background: rgba(217, 22, 86, 0.1); color: var(--main-color); }
+        .icon-green { background: rgba(34, 197, 94, 0.1); color: #16a34a; }
+        .icon-purple { background: rgba(147, 51, 234, 0.1); color: #9333ea; }
+        .icon-blue { background: rgba(59, 130, 246, 0.1); color: #2563eb; }
+        .icon-amber { background: rgba(245, 158, 11, 0.1); color: #d97706; }
+        .icon-teal { background: rgba(20, 184, 166, 0.1); color: #0d9488; }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--ternary-color);
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+        }
+
+        .metric-label {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 6px;
+        }
+
+        .metric-sub {
+            font-size: 0.85rem;
+            color: #777;
+            line-height: 1.4;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            background: linear-gradient(135deg, #fff0f5 0%, #faf5ff 100%);
+            padding: 60px 20px;
+            border-top: 1px solid rgba(217, 22, 86, 0.1);
+            border-bottom: 1px solid rgba(217, 22, 86, 0.1);
+        }
+
+        .calc-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .calc-card {
+            background: #fff;
+            border-radius: 28px;
+            padding: 40px;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.06);
+            margin-top: 30px;
+            border: 1px solid rgba(217, 22, 86, 0.15);
+        }
+
+        .calc-slider-wrap {
+            margin: 30px 0;
+        }
+
+        .calc-slider-wrap label {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--ternary-color);
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .range-slider {
+            width: 100%;
+            max-width: 500px;
+            accent-color: var(--main-color);
+            height: 8px;
+            cursor: pointer;
+        }
+
+        .slider-val-badge {
+            display: inline-block;
+            background: var(--main-color);
+            color: white;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        .calc-results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 35px;
+        }
+
+        .calc-res-box {
+            background: #fdf5f8;
+            padding: 22px;
+            border-radius: 20px;
+            border: 1px solid rgba(217, 22, 86, 0.1);
+        }
+
+        .calc-res-box h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--main-color);
+            margin-bottom: 5px;
+        }
+
+        .calc-res-box p {
+            font-size: 0.9rem;
+            color: #555;
+            font-weight: 600;
+        }
+
+        /* Vendor Honor Roll */
+        .vendor-section {
+            max-width: 1200px;
+            margin: 70px auto;
+            padding: 0 20px;
+        }
+
+        .section-header-center {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header-center h2 {
+            font-size: 2.2rem;
+            color: var(--ternary-color);
+            margin-bottom: 10px;
+        }
+
+        .vendor-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .vendor-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid #eee;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s ease;
+        }
+
+        .vendor-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(217, 22, 86, 0.3);
+        }
+
+        .vendor-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .vendor-avatar-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--main-color), var(--ternary-color));
+            color: white;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .vendor-card h3 {
+            font-size: 1.15rem;
+            color: var(--ternary-color);
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .vendor-neighborhood {
+            font-size: 0.8rem;
+            color: var(--main-color);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .vendor-stats-strip {
+            background: #fdf5f8;
+            border-radius: 12px;
+            padding: 10px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .vendor-stats-strip strong {
+            color: var(--main-color);
+            font-size: 1.1rem;
+        }
+
+        /* Flow Comparison */
+        .comparison-section {
+            background: #fff;
+            max-width: 1100px;
+            margin: 0 auto 70px;
+            padding: 0 20px;
+        }
+
+        .flow-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .flow-grid { grid-template-columns: 1fr; }
+        }
+
+        .flow-card-bad {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .flow-card-good {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 20px;
+            padding: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cursor elements -->
+    <div class="circle"></div><div class="circle"></div><div class="circle"></div><div class="circle"></div>
+    <div class="circle"></div><div class="circle"></div><div class="circle"></div><div class="circle"></div>
+    <div class="circle"></div><div class="circle"></div><div class="circle"></div><div class="circle"></div>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-logo">
+            <img src="images/logo.png" alt="Yah! Logo">
+            <div class="loader-ring"></div>
+        </div>
+        <p class="loader-text">Loading Community Impact...</p>
+    </div>
+
+    <!-- Scroll progress bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <div class="logo">
+            <img src="./images/logo.png" alt="yah-logo" height="40px" width="40px">
+            <a href="./index.html">Yah!</a>
+            <span id="live-location-badge" style="background:var(--accent-pink); color:white; font-size:0.65rem; font-weight:800; padding:2px 8px; border-radius:20px; margin-left:10px; vertical-align:middle; text-transform:uppercase; letter-spacing:0.5px; cursor:pointer;" title="Community Marketplace">📍 Accra Network</span>
+        </div>
+        <div class="nav-links">
+            <a href="./index.html" class="link">Home</a>
+            <a href="./last-scoop.html" class="link"><i class="fas fa-fire-alt"></i> Last Scoop</a>
+            <a href="./products.html" class="link">Flavors</a>
+            <a href="./impact.html" class="link active">Impact 🌱</a>
+            <a href="./track.html" class="link">Track Order</a>
+            <a href="./admin.html" class="link vendor-pill"><i class="fas fa-store"></i> Vendor Hub</a>
+        </div>
+        <div class="icons">
+            <div class="icon">
+                <a href="./dashboard.html"><i class="fa fa-user" aria-hidden="true"></i></a>
+            </div>
+            <div class="icon">
+                <span class="i"><i class="fa fa-shopping-cart cart-icon" aria-hidden="true"></i> <span class="no-of-cart-items">0</span></span>
+            </div>
+            <div class="icon">
+                <i class="fa fa-bars menu" aria-hidden="true" id="menu-icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div class="cart" id="cart-drawer">
+        <button class="close-cart-btn" id="close-cart-btn" aria-label="Close cart">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+        <h1>Your Cart</h1>
+        <div class="no-empty-cart">
+            <ul class="cart-list-items"></ul>
+            <div>
+                <div class="total">Sub Total: <span class="sub-total">GHS 0.00</span></div>
+                <button id="cart-checkout-btn">Proceed to Demo Checkout</button>
+            </div>
+        </div>
+        <div class="empty-cart active">
+            <div class="empty-cart-img-div">
+                <img src="images/empty-cart.png" alt="Empty Cart" class="ice-cream-image" />
+            </div>
+            <p class="empty-cart-text">Your cart is empty!</p>
+            <p class="empty-cart-info">Rescue a Last Scoop deal today!</p>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="impact-hero">
+        <div class="impact-badge">
+            <i class="fas fa-chart-line"></i> WarriorHacks 2.0 Community Theme Showcase
+        </div>
+        <br>
+        <span class="demo-disclaimer-pill"><i class="fas fa-info-circle"></i> Live Hackathon Prototype Metrics & Demo Statistics</span>
+        <h1>Community Impact & Food Waste Rescue</h1>
+        <p>
+            Every scoop tells a story. Yah! transforms daily surplus from local parlours into affordable treats for neighbors. 
+            Here is the tangible environmental and economic footprint our community has generated.
+        </p>
+    </section>
+
+    <!-- Key Metrics Grid -->
+    <section class="metrics-section">
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-icon-wrap icon-pink">
+                    <i class="fas fa-ice-cream"></i>
+                </div>
+                <div class="metric-value" id="val-servings-rescued">1,428</div>
+                <div class="metric-label">Surplus Servings Rescued</div>
+                <div class="metric-sub">Delicious portions saved from end-of-day waste across our vendor network.</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon-wrap icon-green">
+                    <i class="fas fa-recycle"></i>
+                </div>
+                <div class="metric-value" id="val-waste-prevented">714 kg</div>
+                <div class="metric-label">Food Waste Prevented</div>
+                <div class="metric-sub">Estimated organic waste diverted from municipal landfills, conserving water and energy.</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon-wrap icon-purple">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div class="metric-value" id="val-money-saved">GHS 24,560</div>
+                <div class="metric-label">Customer Money Saved</div>
+                <div class="metric-sub">Real financial savings for community members through our Last Scoop surplus deals.</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon-wrap icon-blue">
+                    <i class="fas fa-store-alt"></i>
+                </div>
+                <div class="metric-value" id="val-participating-vendors">12</div>
+                <div class="metric-label">Local Artisan Parlours</div>
+                <div class="metric-sub">Independent businesses recovering revenue and gaining new neighborhood customers.</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon-wrap icon-amber">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="metric-value" id="val-customers-served">3,850+</div>
+                <div class="metric-label">Conscious Customers Served</div>
+                <div class="metric-sub">Community food rescue champions participating in the zero-waste circular loop.</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon-wrap icon-teal">
+                    <i class="fas fa-receipt"></i>
+                </div>
+                <div class="metric-value" id="val-lastscoop-orders">926</div>
+                <div class="metric-label">Last Scoop Orders Completed</div>
+                <div class="metric-sub">Completed rescue orders verified through pickup and local delivery.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Impact Calculator -->
+    <section class="calculator-section">
+        <div class="calc-container">
+            <div class="impact-badge" style="background:var(--main-color);">
+                <i class="fas fa-calculator"></i> Personal Impact Simulator
+            </div>
+            <h2 style="font-size:2.2rem; color:var(--ternary-color); margin-top:10px;">Calculate Your Personal Impact</h2>
+            <p style="color:#666; max-width:600px; margin:0 auto;">See how much money you can save and food waste you can prevent just by choosing Last Scoop surplus treats!</p>
+
+            <div class="calc-card">
+                <div class="calc-slider-wrap">
+                    <label for="scoop-slider">How many surplus scoops would you rescue per month?</label>
+                    <input type="range" id="scoop-slider" class="range-slider" min="1" max="20" value="4">
+                    <br>
+                    <span class="slider-val-badge" id="slider-display">4 Scoops / Month</span>
+                </div>
+
+                <div class="calc-results-grid">
+                    <div class="calc-res-box">
+                        <h3 id="calc-res-savings">GHS 576</h3>
+                        <p>Your Annual Savings</p>
+                    </div>
+                    <div class="calc-res-box">
+                        <h3 id="calc-res-waste">24.0 kg</h3>
+                        <p>Food Waste Diverted/Year</p>
+                    </div>
+                    <div class="calc-res-box">
+                        <h3 id="calc-res-carbon">48 kg CO₂e</h3>
+                        <p>Avoided Greenhouse Emissions</p>
+                    </div>
+                </div>
+
+                <div style="margin-top:25px;">
+                    <a href="./last-scoop.html" style="display:inline-block; padding:12px 28px; background:linear-gradient(135deg, var(--main-color), var(--ternary-color)); color:white; font-weight:700; border-radius:25px; box-shadow:0 6px 18px rgba(217,22,86,0.25);">
+                        <i class="fas fa-fire-alt" style="margin-right:6px;"></i> Browse Live Last Scoop Deals
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Participating Local Vendors Honor Roll -->
+    <section class="vendor-section">
+        <div class="section-header-center">
+            <div class="impact-badge"><i class="fas fa-medal"></i> Local Business Champions</div>
+            <h2>Participating Artisan Parlours</h2>
+            <p style="color:#666; max-width:650px; margin:0 auto;">Our network of independent parlours committed to zero daily food waste.</p>
+        </div>
+
+        <div class="vendor-cards-grid" id="vendor-honor-roll-grid">
+            <!-- Dynamically injected by script/impact.js -->
+        </div>
+    </section>
+
+    <!-- The Yah! Circular Cycle Comparison -->
+    <section class="comparison-section">
+        <div class="section-header-center">
+            <h2>The Difference Yah! Makes</h2>
+            <p style="color:#666;">Comparing traditional food waste practices against our community marketplace approach.</p>
+        </div>
+
+        <div class="flow-grid">
+            <div class="flow-card-bad">
+                <h3 style="color:#b91c1c; font-size:1.3rem; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+                    <i class="fas fa-times-circle"></i> Without Yah! (The Traditional Problem)
+                </h3>
+                <ul style="color:#4b5563; font-size:0.95rem; line-height:1.7; padding-left:18px; list-style-type:disc;">
+                    <li>Unsold perishable ice-cream melts or goes stale in store coolers.</li>
+                    <li>End-of-day batches are routinely discarded into municipal bins.</li>
+                    <li>Small artisanal parlours absorb 100% of ingredient & dairy losses.</li>
+                    <li>Customers miss out on affordable treats from quality makers.</li>
+                    <li>Landfills generate methane from decomposing organic dairy and fruit.</li>
+                </ul>
+            </div>
+
+            <div class="flow-card-good">
+                <h3 style="color:#15803d; font-size:1.3rem; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+                    <i class="fas fa-check-circle"></i> With Yah! (The Community Solution)
+                </h3>
+                <ul style="color:#166534; font-size:0.95rem; line-height:1.7; padding-left:18px; list-style-type:disc;">
+                    <li>Vendors list surplus stock in 30 seconds via the Vendor Dashboard.</li>
+                    <li>Nearby residents discover instant discounts up to 50% on Last Scoop.</li>
+                    <li>Customers place demo orders for quick evening pickup or delivery.</li>
+                    <li>Food businesses recover costs and build lasting customer relationships.</li>
+                    <li>Every rescued scoop is dynamically tracked on our community impact board.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background:#111; color:#bbb; padding:50px 20px 80px; text-align:center; font-size:0.9rem;">
+        <div style="max-width:800px; margin:0 auto;">
+            <img src="./images/logo.png" alt="Yah! Logo" height="45px" style="margin-bottom:15px;">
+            <h3 style="color:#fff; font-size:1.3rem; margin-bottom:8px;">Yah! — Community Ice-Cream Marketplace</h3>
+            <p style="color:#888; margin-bottom:20px;">WarriorHacks 2.0 Theme: Solving Local Food Waste & Supporting Local Businesses.</p>
+            <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom:25px;">
+                <a href="index.html" style="color:#ff85a2;">Home</a>
+                <a href="last-scoop.html" style="color:#ff85a2;">Last Scoop Deals</a>
+                <a href="products.html" style="color:#ff85a2;">All Products</a>
+                <a href="impact.html" style="color:#ff85a2;">Community Impact</a>
+                <a href="admin.html" style="color:#ff85a2;">Vendor Dashboard</a>
+                <a href="track.html" style="color:#ff85a2;">Track Order</a>
+            </div>
+            <p style="color:#555; font-size:0.8rem;">* All statistical numbers and metrics on this demo site are simulated prototype data for judging demonstration.</p>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="last-scoop.html" class="nav-item">
+            <i class="fas fa-fire-alt"></i>
+            <span>Last Scoop</span>
+        </a>
+        <a href="products.html" class="nav-item">
+            <i class="fas fa-ice-cream"></i>
+            <span>Menu</span>
+        </a>
+        <a href="impact.html" class="nav-item active">
+            <i class="fas fa-chart-pie"></i>
+            <span>Impact</span>
+        </a>
+        <a href="track.html" class="nav-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Track</span>
+        </a>
+    </nav>
+
+    <!-- Scripts -->
+    <script type="module" src="script/nav.js"></script>
+    <script type="module" src="script/cursor.js"></script>
+    <script type="module" src="script/topscrollindicator.js"></script>
+    <script type="module" src="script/cart.js"></script>
+    <script type="module" src="script/impact.js"></script>
+</body>
+
+</html>

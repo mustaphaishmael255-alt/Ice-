@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yah! - GALLERY</title>
+
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/gallery.css">
+    <link rel="stylesheet" href="styles/mediaQueries.css">
+    <link rel="stylesheet" href="styles/cursor.css">
+    <link rel="stylesheet" href="styles/topscrollindicator.css">
+
+    <!-- font awesome icons script -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- link to add favicon -->
+    <link rel="icon" href="./images/logo.png" type="image/png">
+</head>
+
+
+<body>
+    <!-- cursor -->
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-logo">
+            <img src="images/logo.png" alt="Yah! Logo">
+            <div class="loader-ring"></div>
+        </div>
+        <p class="loader-text">Loading Sweetness...</p>
+    </div>
+
+    <!-- scroll progress -->
+    <div class="scroll-progress"></div>
+
+    <!-- nav bar -->
+    <div class="nav-bar">
+        <div class="logo">
+            <img src="./images/logo.png" alt="Yah!-logo" height="40px" width="40px">
+            <a href="./index.html">Yah!</a>
+        </div>
+        <div class="nav-links">
+            <a href="./index.html" class="link">home</a>
+            <a href="./products.html" class="link">products</a>
+            <a href="./dine-in.html" class="link">Dine In</a>
+            <a href="./catering.html" class="link">Catering</a>
+                        <a href="./dashboard.html" class="link">Dashboard</a>
+        </div>
+        <div class="icons">
+            <div class="icon">
+                <a href="./dashboard.html"><i class="fa fa-user" aria-hidden="true"></i></a>
+            </div>
+            <div class="icon">
+                <span class="i"><i class="fa fa-shopping-cart cart-icon" aria-hidden="true"></i> <span
+                        class="no-of-cart-items">0</span></span>
+            </div>
+            <div class="icon">
+                <i class="fa fa-bars menu" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <h1 class="gallery-heading">Visual Scoops</h1>
+        <div class="gallery-sub-heading">
+            <p>Explore the vibrant world of Yah! East Legon. From our handcrafted churns to the smiles in our Accra parlours, every scoop tells a story.</p>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item" data-caption="Signature Irish Milk Shake">
+                <img src="images/gallary10.jpg" alt="Gallery Image 1">
+            </div>
+            <div class="gallery-item" data-caption="Modern Parlour Interior - East Legon">
+                <img src="images/gallary2.jpg" alt="Gallery Image 2">
+            </div>
+            <div class="gallery-item" data-caption="Hand-Zested Fruit Sorbets">
+                <img src="images/gallary3.jpg" alt="Gallery Image 3">
+            </div>
+            <div class="gallery-item" data-caption="Premium Catering Setup">
+                <img src="images/gallary4.jpg" alt="Gallery Image 4">
+            </div>
+            <div class="gallery-item" data-caption="Decadent Dark Chocolate">
+                <img src="images/gallary5.jpg" alt="Gallery Image 5">
+            </div>
+            <div class="gallery-item" data-caption="Happy Customers at Airport Branch">
+                <img src="images/gallary6.jpg" alt="Gallery Image 6">
+            </div>
+            <div class="gallery-item" data-caption="Freshly Churned Pistachio">
+                <img src="images/gallary7.jpg" alt="Gallery Image 7">
+            </div>
+            <div class="gallery-item" data-caption="Vibrant Berry Swirls">
+                <img src="images/gallary8.jpg" alt="Gallery Image 8">
+            </div>
+            <div class="gallery-item" data-caption="Classic Vanilla Bean">
+                <img src="images/gallary9.jpg" alt="Gallery Image 9">
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Lightbox -->
+    <div class="custom-lightbox" id="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <div class="lightbox-nav">
+            <i class="fas fa-chevron-left prev"></i>
+            <i class="fas fa-chevron-right next"></i>
+        </div>
+        <div class="lightbox-content">
+            <img src="" alt="Enlarged Scoop" id="lightbox-img">
+            <p class="lightbox-caption" id="lightbox-caption"></p>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <section class="footer">
+        <div class="footer-row">
+            <div class="footer-col">
+                <h4>Useful links</h4>
+                <ul class="links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="./dashboard.html">My Account</a></li>
+                    <li><a href="./products.html">Products</a></li>
+                    <li><a href="./gallery.html">Gallery</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="./faq.html" class="link"> FAQ</a></li>
+                    <li><a href="./blogs.html"> Our Blogs</a></li>
+                    <li><a href="./terms&condition.html">Customer Agreement</a></li>
+                    <li><a href="./privacy.html"> Privacy Policy</a></li>
+                                <li><a href="./admin.html" style="color: var(--accent-purple); font-weight: 600;"><i class="fas fa-lock"></i> Admin Portal</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Opening Hours</h4>
+                <ul class="links">
+                    <li><a href="#">Mon-Sun : 10.00 AM to 10.00 PM</a></li>
+                </ul>
+                <h4 style="margin-top: 15px;">Official Location</h4>
+                <ul class="links">
+                    <li class="address1"><a href="#" class="social"><i class="fa-solid fa-location-dot"></i> Lagos Ave, East Legon, Accra, Ghana</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect With Us</h4>
+                <ul class="links">
+                    <li><a href="#" class="social"><i class="fa-solid fa-phone"></i> +233 24 123 4567</a></li>
+                    <li><a href="https://facebook.com" class="social"><i class="fa-brands fa-facebook-f"></i> Facebook</a></li>
+                </ul>
+                <h4 style="margin-top: 15px;">Follow Us</h4>
+                <ul class="links">
+                    <li><a href="https://www.facebook.com/" class="social"><i class="fa-brands fa-facebook-f"></i>
+                            Facebook</a></li>
+                    <li><a href="https://www.instagram.com/" class="social"><i class="fa-brands fa-instagram"></i>
+                            Instagram</a></li>
+                    <li><a href="https://www.linkedin.com/" class="social"><i class="fa-brands fa-linkedin-in"></i>
+                            Linkedin</a></li>
+                    <li><a href="https://www.twitter.com/" class="social"><i class="fa-brands fa-twitter"></i>
+                            Twitter</a></li>
+                    <li><a href="https://www.whatsapp.com/" class="social"><i class="fa-brands fa-whatsapp"></i> 
+                            Whatsapp</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>
+                    Subscribe to our newsletter for a weekly dose
+                    of news, updates, helpful tips, and
+                    exclusive offers.
+                </p>
+                <form action="#">
+                    <input id="auto-field-7" name="auto-field-7" type="email" placeholder="Your email" required autocomplete="email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-----scroll bottom to top------->
+    <button class="scroll-button">
+        <img src="images/icecream-cone.png" alt="icecream-cone" />
+    </button>
+
+    <div class="copyright">
+        <div class="copyright-top">&copy; <span id="year"></span> by <span>Yah!</span> | All Rights Reserved</div>
+        <div class="copyright-dev">Developed by <a href="https://wa.me/233505988057" target="_blank" class="dev-link">Roy.tech</a> &nbsp;|&nbsp; <a href="https://wa.me/233505988057" target="_blank" class="dev-whatsapp"><i class="fa-brands fa-whatsapp"></i> 0505988057</a></div>
+    </div>
+
+    <!-- Cart -->
+    <div class="cart">
+        <button class="close-cart-btn" id="close-cart-btn" aria-label="Close cart" onclick="document.querySelector('.cart').classList.remove('active'); return false;"><i class="fa fa-times" aria-hidden="true"></i></button>
+        <h1>Your Cart</h1>
+        <div class="no-empty-cart">
+            <ul class="cart-list-items"></ul>
+            <div>
+                <div class="total">Sub Total: <span class="sub-total">$0</span></div>
+                <button>Check out</button>
+            </div>
+        </div>
+        <div class="empty-cart active">
+            <div class="empty-cart-img-div">
+                <img src="images/empty-cart.png" alt="Empty Cart" />
+            </div>
+            <p class="empty-cart-text">Your cart is empty!</p>
+        </div>
+    </div>
+
+    <script type="module" src="script/products.js"></script>
+    <script type="module" src="script/nav.js"></script>
+    <script type="module" src="script/cart.js"></script>
+    <script src="script/gallery.js"></script>
+    <script src="script/topscrollindicator.js"></script>
+    <script src="script/cursor.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+

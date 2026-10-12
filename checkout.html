@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yah! - Checkout</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/checkout.css">
+    <link rel="icon" href="./images/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="styles/cursor.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-logo">
+            <img src="images/logo.png" alt="Yah! Logo">
+            <div class="loader-ring"></div>
+        </div>
+        <p class="loader-text">Loading Sweetness...</p>
+    </div>
+
+    <!-- Nav Bar -->
+    <div class="nav-bar">
+        <div class="logo">
+            <img src="./images/logo.png" alt="Yah!-logo" height="40px" width="40px">
+            <a href="./index.html">Yah!</a>
+        </div>
+        <div class="nav-links">
+            <a href="./index.html" class="link">Home</a>
+            <a href="./last-scoop.html" class="link"><i class="fas fa-fire-alt"></i> Last Scoop</a>
+            <a href="./products.html" class="link">Flavors</a>
+            <a href="./impact.html" class="link">Impact 🌱</a>
+            <a href="./track.html" class="link">Track Order</a>
+            <a href="./admin.html" class="link vendor-pill"><i class="fas fa-store"></i> Vendor Hub</a>
+        </div>
+        <div class="icons">
+            <div class="icon">
+                <a href="./dashboard.html"><i class="fa fa-user" aria-hidden="true"></i></a>
+            </div>
+            <div class="icon">
+                <i class="fa fa-bars menu" aria-hidden="true" id="menu-icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <section class="checkout-container">
+        <div style="text-align: center; margin-bottom: 25px;">
+            <span style="display:inline-block; background:rgba(217,22,86,0.1); color:var(--main-color); border:1px solid rgba(217,22,86,0.25); border-radius:20px; padding:4px 14px; font-size:0.8rem; font-weight:700; text-transform:uppercase; margin-bottom:8px;">
+                <i class="fas fa-seedling"></i> WarriorHacks 2.0 Prototype · Demo Checkout
+            </span>
+            <h1 style="margin-bottom:6px;">Demo Checkout</h1>
+            <p style="color:#666; font-size:0.95rem;">Test the complete customer ordering & food waste rescue flow without real payment.</p>
+        </div>
+        
+        <div class="checkout-grid">
+            <!-- Order Summary -->
+            <div class="order-summary">
+                <h2>Order Summary</h2>
+                <div id="checkout-items-list">
+                    <!-- Items will be injected here -->
+                </div>
+                <div class="summary-totals">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="summary-subtotal">GHS 0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span id="summary-shipping">$5.00</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="summary-total">GHS 0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Billing Details -->
+            <div class="billing-details">
+                <h2>Shipping & Billing</h2>
+                <form id="checkout-form">
+                    <!-- Hidden under-the-hood fields to maintain flawless checkout.js integration -->
+                    <div style="display: none !important;">
+                        <input type="radio" name="order-type" value="delivery" id="raw-delivery-radio" checked>
+                        <input type="radio" name="order-type" value="pickup" id="raw-pickup-radio">
+                        <textarea id="address" required placeholder="Address" autocomplete="street-address"></textarea>
+                        <button type="button" id="locate-me-btn"></button>
+                    </div>
+
+                    <!-- Stunning, high-fidelity Trigger Button Card -->
+                    <div class="form-group">
+                        <label style="font-weight: 600; font-size: 0.95rem; color: var(--ternary-color); margin-bottom: 10px; display: block;">Delivery / Pickup Handover Location</label>
+                        <div class="location-trigger-card" id="location-trigger">
+                            <div class="location-trigger-content">
+                                <div class="location-trigger-icon" id="trigger-icon-indicator">
+                                    <i class="fas fa-motorcycle"></i>
+                                </div>
+                                <div class="location-trigger-details">
+                                    <h4 id="trigger-title-indicator">Delivery Location</h4>
+                                    <p id="trigger-desc-indicator" style="color: var(--main-color); font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                                        <i class="fas fa-map-marker-alt"></i> Tap to set delivery address or select pickup branch
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="location-trigger-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label for="full-name">Full Name (Optional)</label>
+                        <input type="text" id="full-name" placeholder="John Doe" autocomplete="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" required placeholder="john@example.com" autocomplete="email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number (for MoMo / confirmation)</label>
+                        <input type="tel" id="phone" placeholder="024 123 4567" autocomplete="tel">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="delivery-date">Preferred Delivery Date & Time (Optional)</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="date" id="delivery-date" style="flex: 1;" min="" autocomplete="off">
+                            <input type="time" id="delivery-time" style="flex: 1;" autocomplete="off">
+                        </div>
+                        <p style="font-size: 0.8rem; color: #666; margin-top: 5px;">Leave blank for ASAP delivery</p>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label for="promo-code">Promo Code (Optional)</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="promo-code" placeholder="Enter promo code" style="flex: 1;" autocomplete="on">
+                            <button type="button" id="apply-promo-btn" style="
+                                background: var(--main-color);
+                                color: white;
+                                border: none;
+                                padding: 12px 20px;
+                                border-radius: 8px;
+                                font-weight: 600;
+                                cursor: pointer;
+                                transition: 0.3s;
+                            ">Apply</button>
+                        </div>
+                        <p id="promo-message" style="font-size: 0.85rem; margin-top: 8px; display: none;"></p>
+                    </div>
+
+                    <div style="background: rgba(16, 185, 129, 0.08); border: 1.5px solid #10b981; border-radius: 14px; padding: 16px 20px; margin: 20px 0;">
+                        <div style="font-weight:700; color:#047857; font-size:0.95rem; margin-bottom:4px; display:flex; align-items:center; gap:8px;">
+                            <i class="fas fa-check-circle"></i> Hackathon Demo Mode Active
+                        </div>
+                        <p style="font-size:0.85rem; color:#065f46; margin:0;">
+                            Test the entire customer journey, order tracking, and community impact without entering real card details.
+                        </p>
+                    </div>
+
+                    <button type="button" class="place-order-btn" id="demo-order-btn" style="
+                        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.35);
+                        margin-bottom: 12px;
+                        width: 100%;
+                        cursor: pointer;
+                    ">
+                        <i class="fas fa-bolt"></i> ⚡ Confirm Demo Order (Instant Placement)
+                    </button>
+
+                    <div style="text-align:center; color:#999; font-size:0.85rem; margin:10px 0;">— OR TEST PAYMENT GATEWAY —</div>
+
+                    <div class="paystack-note" style="
+                        background: rgba(217, 22, 86, 0.05);
+                        border: 1.5px solid rgba(217, 22, 86, 0.2);
+                        border-radius: 14px;
+                        padding: 14px 18px;
+                        margin: 15px 0;
+                        display: flex;
+                        align-items: center;
+                        gap: 12px;
+                        font-size: 0.88rem;
+                        color: #555;
+                    ">
+                        <i class="fas fa-lock" style="color: var(--main-color); font-size: 1.2rem;"></i>
+                        <span>Sandbox Test Gateway: You can test Paystack popup with test numbers or card details.</span>
+                    </div>
+
+                    <button type="submit" class="place-order-btn" id="pay-btn" style="background:#475569; box-shadow:none; width:100%; font-size:0.9rem;">
+                        <i class="fas fa-credit-card"></i> Pay Securely with Paystack (Test Mode)
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="products.html" class="nav-item">
+            <i class="fas fa-ice-cream"></i>
+            <span>Products</span>
+        </a>
+        <a href="track.html" class="nav-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Track</span>
+        </a>
+        <a href="dashboard.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+    </nav>
+
+    <!-- 📍 STUNNING SELECT LOCATION POPUP MODAL (Pizzaman Style) -->
+    <div class="location-modal" id="location-modal-popup">
+        <div class="location-modal-card">
+            <!-- Modal Header -->
+            <div class="location-modal-header">
+                <div class="location-modal-title-row">
+                    <button type="button" class="location-modal-back-btn" id="location-modal-back" style="display: none;">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <h3>Select Location</h3>
+                    <button type="button" class="location-modal-close-btn" id="location-modal-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <!-- Slideable tabs selector -->
+                <div class="location-modal-tabs">
+                    <button type="button" class="location-modal-tab active" id="tab-delivery" data-tab="delivery">
+                        <i class="fas fa-motorcycle" style="margin-right: 6px;"></i> Delivery
+                    </button>
+                    <button type="button" class="location-modal-tab" id="tab-pickup" data-tab="pickup">
+                        <i class="fas fa-store" style="margin-right: 6px;"></i> Pick Up
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="location-modal-body">
+                <!-- 🛵 DELIVERY CONTENT VIEW -->
+                <div class="location-view-section" id="view-delivery">
+                    <div style="margin-bottom: 15px;">
+                        <span class="location-section-title">Your Delivery Location</span>
+                        <div style="font-weight: 700; color: var(--ternary-color); font-size: 1.05rem; margin-top: 5px; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-map-marker-alt" style="color: var(--main-color);"></i>
+                            <span id="active-delivery-addr-text" style="line-height: 1.4;">No delivery address set</span>
+                        </div>
+                    </div>
+
+                    <span class="location-section-title">Search Location</span>
+                    <div class="location-search-wrapper" style="margin-bottom: 15px;">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="delivery-search-input" placeholder="Search address or tap map..." autocomplete="off">
+                        <button type="button" class="google-maps-trigger-btn" id="map-toggle-btn" title="Open Map Selection">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </button>
+                    </div>
+
+                    <!-- Leaflet Map Container -->
+                    <div class="location-map-container" id="leaflet-map-selector"></div>
+                    <div id="map-instruction" style="display: none; text-align: center; font-size: 0.85rem; color: #888; margin-top: -10px; margin-bottom: 15px; font-weight: 500;">
+                        <i class="fas fa-info-circle"></i> Click/drag on the map to pin your exact delivery address!
+                    </div>
+
+                    <div style="margin-top: 10px;">
+                        <span class="location-section-title">Choose from previous delivery locations</span>
+                        <div class="location-list" id="previous-delivery-list">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🏪 PICKUP CONTENT VIEW -->
+                <div class="location-view-section" id="view-pickup" style="display: none;">
+                    <span class="location-section-title">Search Branch</span>
+                    <div class="location-search-wrapper" style="margin-bottom: 18px;">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="pickup-search-input" placeholder="Find a branch..." autocomplete="off">
+                    </div>
+
+                    <span class="location-section-title">Available branches</span>
+                    <div class="location-list" id="branches-list-container">
+                        <!-- Branches loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="location-modal-footer">
+                <button type="button" class="location-confirm-btn" id="location-confirm-action-btn">
+                    Continue
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script type="module" src="script/nav.js"></script>
+    <script type="module" src="script/checkout.js"></script>
+    <script type="module" src="script/checkout-location.js"></script>
+    <script src="script/script.js"></script>
+    <script src="script/cursor.js"></script>
+    <script src="script/animations.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+

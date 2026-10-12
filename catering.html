@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yah! - CATERING</title>
+
+    <!-- custom style sheets -->
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/mediaQueries.css">
+    <link rel="stylesheet" href="styles/topscrollindicator.css">
+    <link rel="stylesheet" href="styles/cursor.css">
+    <link rel="stylesheet" href="styles/delivery-catering.css">
+
+    <!-- link to add favicon -->
+    <link rel="icon" href="./images/logo.png" type="image/png">
+
+    <!-- font awesome icons script -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+    <!-- cursor -->
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-logo">
+            <img src="images/logo.png" alt="Yah! Logo">
+            <div class="loader-ring"></div>
+        </div>
+        <p class="loader-text">Loading Sweetness...</p>
+    </div>
+
+    <!-- Scroll progress bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- nav bar -->
+    <div class="nav-bar">
+        <div class="logo">
+            <img src="./images/logo.png" alt="Yah!-logo" height="40px" width="40px">
+            <a href="./index.html">Yah!</a>
+        </div>
+        <div class="nav-links">
+            <a href="./index.html" class="link">Home</a>
+            <a href="./products.html" class="link">Products</a>
+            <a href="./last-scoop.html" class="link" style="color: #ff4757; font-weight: 700;">Last Scoop ⏳</a>
+            <a href="./impact.html" class="link">Impact 🌱</a>
+            <a href="./dine-in.html" class="link">Dine In</a>
+            <a href="./catering.html" class="link active">Catering</a>
+            <a href="./dashboard.html" class="link">Dashboard</a>
+        </div>
+        <div class="icons">
+            <div class="icon">
+                <a href="./dashboard.html"><i class="fa fa-user" aria-hidden="true"></i></a>
+            </div>
+            <div class="icon">
+                <span class="i"><i class="fa fa-shopping-cart cart-icon" aria-hidden="true"></i> <span
+                        class="no-of-cart-items">0</span></span>
+            </div>
+            <div class="icon">
+                <i class="fa fa-bars menu" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- catering form -->
+    <section>
+        <h1 style="margin-top: 100px; padding: 0 40px;">Event Catering</h1>
+        
+        <div class="catering-hero" style="margin-top: 30px; border-radius: 30px; overflow: hidden; height: 400px; position: relative;" data-aos="zoom-in">
+            <img src="./images/gallary1.jpg" alt="Catering Event" style="width: 100%; height: 100%; object-fit: cover;">
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 40px; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 10px; color: white;">Make Your Event Extra Sweet</h2>
+                <p style="font-size: 1.1rem; opacity: 0.9; color: white;">Professional ice cream catering for weddings, birthdays, corporate events, and more.</p>
+            </div>
+        </div>
+
+        <!-- Pricing Section -->
+        <div style="margin-top: 50px; padding: 0 40px;">
+            <h2 class="heading" style="text-align: center;">Catering Packages</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 30px;">
+                <div style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; border: 2px solid var(--main-color);">
+                    <h3 style="color: var(--main-color); font-size: 1.5rem; margin-bottom: 10px;">Self Service Pickup</h3>
+                    <p style="font-size: 2.5rem; font-weight: 800; color: var(--ternary-color); margin-bottom: 15px;">GHS 500<span style="font-size: 1rem; font-weight: 400; color: #888;">/event</span></p>
+                    <ul style="text-align: left; list-style: none; padding: 0; margin-bottom: 20px;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid #eee;"><i class="fas fa-check" style="color: var(--main-color); margin-right: 10px;"></i> Up to 50 servings</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #eee;"><i class="fas fa-check" style="color: var(--main-color); margin-right: 10px;"></i> 5 flavor options</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #eee;"><i class="fas fa-check" style="color: var(--main-color); margin-right: 10px;"></i> Pickup at our location</li>
+                        <li style="padding: 8px 0;"><i class="fas fa-check" style="color: var(--main-color); margin-right: 10px;"></i> Disposable serving cups</li>
+                    </ul>
+                </div>
+                <div style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; border: 2px solid var(--main-color);">
+                    <h3 style="color: var(--main-color); font-size: 1.5rem; margin-bottom: 10px;">Self Service Delivery</h3>
+                    <p style="font-size: 2.5rem; font-weight: 800; color: var(--ternary-color); margin-bottom: 15px;">GHS 800<span style="font-size: 1rem; font-weight: 400; color: #888;">/event</span></p>
+                    <ul style="text-align: left; list-style: none; padding: 0; margin-bottom: 20px;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid #eee;"><i class="fas fa-check" style="color: var(--main-color); margin-right: 10px;"></i> Up to 100 servings</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #eee;"><i class="fas fa-check" style="color: var(--main-color); margin-right: 10px;"></i> 8 flavor options</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #eee;"><i class="fas fa-check" style="color: var(--main-color); margin-right: 10px;"></i> Delivery to your venue</li>
+                        <li style="padding: 8px 0;"><i class="fas fa-check" style="color: var(--main-color); margin-right: 10px;"></i> Setup included</li>
+                    </ul>
+                </div>
+                <div style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; border: 2px solid var(--main-color);">
+                    <h3 style="color: var(--main-color); font-size: 1.5rem; margin-bottom: 10px;">Full Service Catering</h3>
+                    <p style="font-size: 2.5rem; font-weight: 800; color: var(--ternary-color); margin-bottom: 15px;">GHS 1,500<span style="font-size: 1rem; font-weight: 400; color: #888;">/event</span></p>
+                    <ul style="text-align: left; list-style: none; padding: 0; margin-bottom: 20px;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid #eee;"><i class="fas fa-check" style="color: var(--main-color); margin-right: 10px;"></i> Unlimited servings</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #eee;"><i class="fas fa-check" style="color: var(--main-color); margin-right: 10px;"></i> All flavors available</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #eee;"><i class="fas fa-check" style="color: var(--main-color); margin-right: 10px;"></i> Professional staff on-site</li>
+                        <li style="padding: 8px 0;"><i class="fas fa-check" style="color: var(--main-color); margin-right: 10px;"></i> Premium serving equipment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="heading" style="margin-top: 50px;">Tell us about your event</h2>
+        
+        <form class="form-contents" data-aos="fade-up">
+            <div class="indv-text">
+                <label for="name">Full Name</label>
+                <input type="text" class="form-text" id="name" placeholder="Enter your Name" required autocomplete="name" />
+            </div>
+
+            <div class="indv-text">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-text" id="email" placeholder="example@gmail.com" required autocomplete="email">
+            </div>
+
+            <div class="indv-text">
+                <label for="contact">Phone Number</label>
+                <input type="tel" class="form-text" name="contact" id="contact" placeholder="024 123 4567" required autocomplete="tel">
+            </div>
+
+            <div class="indv-text">
+                <label for="eventdate">Event Date</label>
+                <input type="date" class="form-text" name="eventdate" id="dateInput" required autocomplete="off">
+            </div>
+
+            <div class="indv-text">
+                <label>Service Type</label>
+                <div class="radio-group" style="display: flex; flex-direction: column; gap: 15px; margin-top: 10px;">
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="radio" name="indoor-outdoor" value="self-pickup" style="width: 20px; height: 20px; accent-color: var(--main-color);">
+                        Self Service Pickup
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="radio" name="indoor-outdoor" value="self-delivery" style="width: 20px; height: 20px; accent-color: var(--main-color);">
+                        Self Service Delivery
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="radio" name="indoor-outdoor" value="full-service" style="width: 20px; height: 20px; accent-color: var(--main-color);">
+                        Full Service Catering
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="radio" name="indoor-outdoor" value="not-sure" style="width: 20px; height: 20px; accent-color: var(--main-color);">
+                        Not Sure, Want To Learn More
+                    </label>
+                </div>
+            </div>
+
+            <div class="indv-text">
+                <label for="add1">Event Location / Address</label>
+                <input type="text" class="form-text" name="add1" id="add1" placeholder="Venue name, Street address" required autocomplete="on">
+            </div>
+
+            <div class="indv-text">
+                <label for="state">District / Neighborhood</label>
+                <select class="form-text" id="state" required autocomplete="off">
+                    <option value="">Select Neighborhood</option>
+                    <option value="East Legon">East Legon</option>
+                    <option value="Airport Residential">Airport Residential</option>
+                    <option value="Cantonments">Cantonments</option>
+                    <option value="Labone">Labone</option>
+                    <option value="Osu">Osu</option>
+                    <option value="Madina">Madina</option>
+                    <option value="Adenta">Adenta</option>
+                    <option value="Legon">Legon</option>
+                    <option value="Spintex">Spintex</option>
+                    <option value="Dzworwulu">Dzworwulu</option>
+                    <option value="Roman Ridge">Roman Ridge</option>
+                    <option value="Abelemkpe">Abelemkpe</option>
+                </select>
+            </div>
+
+            <div class="btn">
+                <button type="submit" value="SUMBIT" class="btn-style">Send Inquiry</button>
+                <button type="reset" class="btn-style reset-btn" value="RESET">Clear Form</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Cart -->
+    <div class="cart">
+        <button class="close-cart-btn" id="close-cart-btn" aria-label="Close cart" onclick="document.querySelector('.cart').classList.remove('active'); return false;"><i class="fa fa-times" aria-hidden="true"></i></button>
+        <h1>Your Cart</h1>
+
+        <div class="no-empty-cart">
+            <ul class="cart-list-items">
+            </ul>
+            <div>
+                <div class="total">Sub Total: <span class="sub-total">GHS 0.00</span></div>
+                <button>Check out</button>
+            </div>
+
+        </div>
+
+        <div class="empty-cart active">
+            <div class="empty-cart-img-div">
+                <img src="images/empty-cart.png" alt="Delicious Ice Cream" class="ice-cream-image" />
+            </div>
+            <p class="empty-cart-text">Your cart is empty!</p>
+            <p class="empty-cart-info">As a cone without ice cream!🍦 </p>
+            <p class="empty-cart-info">Fill it up with our delicious flavors!</p>
+        </div>
+
+    </div>
+
+    <!-- footer -->
+    <section class="footer">
+        <div class="footer-row">
+            <div class="footer-col">
+                <h4>Useful links</h4>
+                <ul class="links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="./login.html">My Account</a></li>
+                    <li><a href="./products.html">Products</a></li>
+                    <li><a href="./gallery.html">Gallery</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="./faq.html" class="link"> FAQ</a></li>
+                    <li><a href="./blogs.html"> Our Blogs</a></li>
+                    <li><a href="./terms&condition.html">Customer Agreement</a></li>
+                    <li><a href="./privacy.html"> Privacy Policy</a></li>
+                    <li><a href="./admin.html" style="color: var(--accent-purple); font-weight: 600;"><i class="fas fa-lock"></i> Admin Portal</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Opening Hours</h4>
+                <ul class="links">
+                    <li><a href="#">Mon-Sun : 10.00 AM to 10.00 PM</a></li>
+                </ul>
+                <h4 style="margin-top: 15px;">Official Location</h4>
+                <ul class="links">
+                    <li class="address1"><a href="#" class="social"><i class="fa-solid fa-location-dot"></i> Lagos Ave, East Legon, Accra, Ghana</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect With Us</h4>
+                <ul class="links">
+                    <li><a href="#" class="social"><i class="fa-solid fa-phone"></i> +233 24 123 4567</a></li>
+                    <li><a href="https://facebook.com" class="social"><i class="fa-brands fa-facebook-f"></i> Facebook</a></li>
+                </ul>
+                <h4 style="margin-top: 15px;">Follow Us</h4>
+                <ul class="links">
+                    <li><a href="https://www.facebook.com/" class="social"><i class="fa-brands fa-facebook-f"></i>
+                            Facebook</a></li>
+                    <li><a href="https://www.instagram.com/" class="social"><i class="fa-brands fa-instagram"></i>
+                            Instagram</a></li>
+                    <li><a href="https://www.linkedin.com/" class="social"><i class="fa-brands fa-linkedin-in"></i>
+                            Linkedin</a></li>
+                    <li><a href="https://www.twitter.com/" class="social"><i class="fa-brands fa-twitter"></i>
+                            Twitter</a></li>
+                    <li><a href="https://www.whatsapp.com/" class="social"><i class="fa-brands fa-whatsapp"></i> 
+                            Whatsapp</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>
+                    Subscribe to our newsletter for a weekly dose
+                    of news, updates, helpful tips, and
+                    exclusive offers.
+                </p>
+                <form action="#">
+                    <input id="auto-field-2" name="auto-field-2" type="email" placeholder="Your email" required autocomplete="email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-----scroll bottom to top------->
+    <button class="scroll-button">
+        <img src="images/icecream-cone.png" alt="icecream-cone" />
+    </button>
+
+    <div class="copyright">
+        <div class="copyright-top">&copy; <span id="year"></span> by <span>Yah!</span> | All Rights Reserved</div>
+        <div class="copyright-dev">Developed by <a href="https://wa.me/233505988057" target="_blank" class="dev-link">Roy.tech</a> &nbsp;|&nbsp; <a href="https://wa.me/233505988057" target="_blank" class="dev-whatsapp"><i class="fa-brands fa-whatsapp"></i> 0505988057</a></div>
+    </div>
+
+    <script type="module" src="./script/catering.js"></script>
+    <script type="module" src="./script/nav.js"></script>
+    <script type="module" src="./script/cart.js"></script>
+    <script type="module" src="./script/products.js"></script>
+    <script src="./script/topscrollindicator.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                document.body.classList.add('loaded');
+            }, 800);
+        });
+    </script>
+    <script src="script/cursor.js"></script>
+    <script src="script/animations.js"></script>
+
+</body>
+
+</html>
+
+

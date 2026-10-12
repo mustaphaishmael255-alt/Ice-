@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Confirm Your Account</title>
+  <style>
+    body {
+      font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #f7f9f9;
+      margin: 0;
+      padding: 0;
+      color: #2c3e50;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    .header {
+      background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .header h1 {
+      color: #ffffff;
+      margin: 0;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    .content {
+      padding: 40px 30px;
+      text-align: center;
+    }
+    .content h2 {
+      font-size: 22px;
+      margin-top: 0;
+      color: #2c3e50;
+    }
+    .content p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #555555;
+      margin-bottom: 30px;
+    }
+    .button {
+      display: inline-block;
+      background-color: #4ecdc4;
+      color: #ffffff !important;
+      text-decoration: none;
+      padding: 15px 35px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
+    }
+    .footer {
+      background-color: #f1f4f4;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #888888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Yah! East Legon 🍦</h1>
+    </div>
+    <div class="content">
+      <h2>Welcome to the family!</h2>
+      <p>We're thrilled to have you here. To complete your signup and start ordering your favorite ice cream, please confirm your email address by clicking the button below.</p>
+      
+      <!-- The {{ .ConfirmationURL }} tag is dynamically replaced by Supabase -->
+      <a href="{{ .ConfirmationURL }}" class="button">Confirm My Account</a>
+      
+      <p style="margin-top: 30px; font-size: 14px; color: #999;">If you didn't create an account with Yah! East Legon, you can safely ignore this email.</p>
+    </div>
+    <div class="footer">
+      &copy; 2026 Yah! East Legon. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Yah! - HOME</title>
+    <meta name="description" content="Indulge in the creamiest handcrafted ice cream in East Legon. Scoops, sundaes, and more – delivered to your door or enjoyed in-store.">
+    <meta name="keywords" content="Ice Cream, East Legon, Accra, Dessert, Gelato, Yah! Ice Cream, Delivery">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yah-icecream.com/">
+    <meta property="og:title" content="Yah! East Legon - Scoop into Happiness">
+    <meta property="og:description" content="Indulge in the creamiest handcrafted ice cream. Order online for delivery across Accra!">
+    <meta property="og:image" content="./images/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yah-icecream.com/">
+    <meta property="twitter:title" content="Yah! East Legon - Scoop into Happiness">
+    <meta property="twitter:description" content="Indulge in the creamiest handcrafted ice cream. Order online for delivery across Accra!">
+    <meta property="twitter:image" content="./images/logo.png">
+
+    <!-- custom style sheets -->
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/mediaQueries.css">
+    <link rel="stylesheet" href="styles/cursor.css">
+
+    <link rel="stylesheet" href="styles/topscrollindicator.css">
+
+    <!-- link to add favicon -->
+    <link rel="icon" href="./images/logo.png" type="image/png">
+
+    <!-- font awesome icons script -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- cursor -->                                                                                                                                                                                     
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-logo">
+            <img src="images/logo.png" alt="Yah! Logo">
+            <div class="loader-ring"></div>
+        </div>
+        <p class="loader-text">Loading Sweetness...</p>
+    </div>
+
+    <!-- Scroll progress bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- nav bar -->
+    <div class="nav-bar">
+        <div class="logo">
+            <img src="./images/logo.png" alt="yah-logo" height="40px" width="40px">
+            <a href="./index.html">Yah!</a>
+            <span id="live-location-badge" style="background:var(--accent-pink); color:white; font-size:0.65rem; font-weight:800; padding:2px 8px; border-radius:20px; margin-left:10px; vertical-align:middle; text-transform:uppercase; letter-spacing:0.5px; cursor:pointer;" title="East Legon, Accra">📍 East Legon</span>
+        </div>
+        <div class="nav-links">
+            <a href="./index.html" class="link active">Home</a>
+            <a href="./last-scoop.html" class="link"><i class="fas fa-fire-alt"></i> Last Scoop</a>
+            <a href="./products.html" class="link">Flavors</a>
+            <a href="./impact.html" class="link">Impact 🌱</a>
+            <a href="./track.html" class="link">Track Order</a>
+            <a href="./admin.html" class="link vendor-pill"><i class="fas fa-store"></i> Vendor Hub</a>
+        </div>
+        <div class="icons">
+            <div class="icon">
+                <a href="./dashboard.html"><i class="fa fa-user" aria-hidden="true"></i></a>
+            </div>
+            <div class="icon">
+                <span class="i"><i class="fa fa-shopping-cart cart-icon" aria-hidden="true"></i> <span
+                        class="no-of-cart-items">0</span></span>
+            </div>
+            <div class="icon">
+                <i class="fa fa-bars menu" aria-hidden="true" id="menu-icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart -->
+    <div class="cart" id="cart-drawer">
+        <button class="close-cart-btn" id="close-cart-btn" aria-label="Close cart" onclick="document.querySelector('.cart').classList.remove('active'); return false;">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+        <h1>Your Cart</h1>
+
+        <div class="no-empty-cart">
+            <ul class="cart-list-items">
+            </ul>
+            <div>
+                <div class="total">Sub Total: <span class="sub-total">GHS 0.00</span></div>
+                <button id="cart-checkout-btn">Check out</button>
+            </div>
+        </div>
+
+        <div class="empty-cart active">
+            <div class="empty-cart-img-div">
+                <img src="images/empty-cart.png" alt="Delicious Ice Cream" class="ice-cream-image" />
+            </div>
+            <p class="empty-cart-text">Your cart is empty!</p>
+            <p class="empty-cart-info">Rescue a Last Scoop surplus deal today!🍦 </p>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="home" id="home">
+        <div class="text">
+            <div style="display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg, var(--ternary-color), var(--main-color)); color:#fff; padding:6px 16px; border-radius:30px; font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:14px; box-shadow:0 4px 15px rgba(217,22,86,0.25);">
+                <i class="fas fa-seedling"></i> WarriorHacks 2.0 Community Project
+            </div>
+            <h1 style="font-size:2.5rem; line-height:1.2; margin-bottom:15px;">Enjoy great ice cream, support local businesses, and help prevent food waste.</h1>
+            <h4 style="font-size:1.15rem; line-height:1.6; color:#444;">Yah! connects customers with local ice-cream vendors and gives surplus products a second chance through affordable, limited-time deals. Freshly churned artisan batches rescued before end-of-day!</h4>
+            <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
+                <a href="./last-scoop.html"><button style="background:linear-gradient(135deg, #e11d48, #640D5F); border:none; box-shadow:0 6px 20px rgba(225,29,72,0.3); color:white; font-weight:700;"><i class="fas fa-fire-alt" style="margin-right:6px;"></i> Rescue Last Scoop Deals</button></a>
+                <a href="./impact.html"><button style="background:white; color:var(--ternary-color); border:2px solid var(--ternary-color); font-weight:700;"><i class="fas fa-chart-line" style="margin-right:6px;"></i> Community Impact</button></a>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="grid-box"></div>
+            <div class="grid-box"></div>
+            <div class="grid-box"></div>
+            <div class="grid-box"></div>
+        </div>
+    </section>
+
+    <!-- Community Impact Live Ribbon -->
+    <section class="home-impact-ribbon" style="background:#fff; border-bottom:1px solid #f0f0f0; border-top:1px solid #f0f0f0; padding:25px 20px;">
+        <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-around; align-items:center; flex-wrap:wrap; gap:20px; text-align:center;">
+            <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:48px; height:48px; border-radius:12px; background:rgba(217,22,86,0.1); color:var(--main-color); display:flex; align-items:center; justify-content:center; font-size:1.3rem;">
+                    <i class="fas fa-ice-cream"></i>
+                </div>
+                <div style="text-align:left;">
+                    <div id="home-servings-rescued" style="font-size:1.5rem; font-weight:800; color:var(--ternary-color);">1,428+</div>
+                    <div style="font-size:0.8rem; color:#777; font-weight:600;">Surplus Servings Rescued</div>
+                </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:48px; height:48px; border-radius:12px; background:rgba(34,197,94,0.1); color:#16a34a; display:flex; align-items:center; justify-content:center; font-size:1.3rem;">
+                    <i class="fas fa-recycle"></i>
+                </div>
+                <div style="text-align:left;">
+                    <div id="home-waste-prevented" style="font-size:1.5rem; font-weight:800; color:var(--ternary-color);">714 kg</div>
+                    <div style="font-size:0.8rem; color:#777; font-weight:600;">Food Waste Prevented</div>
+                </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:48px; height:48px; border-radius:12px; background:rgba(147,51,234,0.1); color:#9333ea; display:flex; align-items:center; justify-content:center; font-size:1.3rem;">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div style="text-align:left;">
+                    <div id="home-savings-count" style="font-size:1.5rem; font-weight:800; color:var(--ternary-color);">GHS 24,560</div>
+                    <div style="font-size:0.8rem; color:#777; font-weight:600;">Community Money Saved</div>
+                </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:48px; height:48px; border-radius:12px; background:rgba(59,130,246,0.1); color:#2563eb; display:flex; align-items:center; justify-content:center; font-size:1.3rem;">
+                    <i class="fas fa-store-alt"></i>
+                </div>
+                <div style="text-align:left;">
+                    <div id="home-vendors-count" style="font-size:1.5rem; font-weight:800; color:var(--ternary-color);">12</div>
+                    <div style="font-size:0.8rem; color:#777; font-weight:600;">Local Artisan Parlours</div>
+                </div>
+            </div>
+            <div>
+                <a href="./impact.html" style="font-size:0.85rem; font-weight:700; color:var(--main-color); text-decoration:underline;">
+                    View Live Impact Dashboard &rarr;
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Last Scoop Surplus Section -->
+    <section style="padding:60px 20px; background:linear-gradient(135deg, #fff5f8 0%, #faf5ff 100%);">
+        <div style="max-width:1200px; margin:0 auto;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:30px; flex-wrap:wrap; gap:15px;">
+                <div>
+                    <span style="display:inline-block; background:#e11d48; color:#fff; padding:4px 12px; border-radius:15px; font-size:0.75rem; font-weight:800; text-transform:uppercase; margin-bottom:6px;">
+                        <i class="fas fa-fire-alt"></i> Surplus Food Waste Rescue
+                    </span>
+                    <h2 style="font-size:2.2rem; color:var(--ternary-color); font-weight:800;">Featured Last Scoop Deals</h2>
+                    <p style="color:#666; font-size:1rem; margin-top:4px;">Limited surplus servings churned today. Rescue before closing at steep discounts!</p>
+                </div>
+                <a href="./last-scoop.html" style="padding:10px 22px; background:var(--main-color); color:white; border-radius:25px; font-weight:700; font-size:0.9rem; text-decoration:none; box-shadow:0 4px 15px rgba(217,22,86,0.25);">
+                    View All Surplus Deals &rarr;
+                </a>
+            </div>
+            <div id="home-last-scoop-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:25px;">
+                <!-- Injected by script/home_marketplace.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Local Artisan Parlours Spotlight -->
+    <section style="padding:60px 20px; background:#fff;">
+        <div style="max-width:1200px; margin:0 auto;">
+            <div style="text-align:center; margin-bottom:35px;">
+                <span style="display:inline-block; background:rgba(100,13,95,0.08); color:var(--ternary-color); padding:4px 14px; border-radius:20px; font-size:0.8rem; font-weight:700; text-transform:uppercase; margin-bottom:8px;">
+                    <i class="fas fa-map-marked-alt"></i> Neighborhood Network
+                </span>
+                <h2 style="font-size:2.2rem; color:var(--ternary-color); font-weight:800;">Local Artisanal Parlours</h2>
+                <p style="color:#666; max-width:600px; margin:0 auto;">Partner businesses serving handcrafted treats while committing to zero end-of-day waste.</p>
+            </div>
+            <div id="home-vendors-spotlight" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px;">
+                <!-- Injected by script/home_marketplace.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Flavors -->
+    <section id="our-flavors">
+        <h1>Find Your Taste</h1>
+        <div class="flavors-container bottomani"></div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <h1>What we do?</h1>
+        <div class="services-card-wrapper">
+            <div class="service-card rightani">
+                <div class="service-card1">
+                    <h2>Dine-In</h2>
+                    <h3>Chill With Us – Indulge In-Store</h3>
+                    <img src="./images/dine in.png" height="120px" width="120px">
+                    <p>Whether you're enjoying a family outing, a date, or a treat just for yourself, our dine-in
+                        experience is the perfect way to savor handcrafted scoops, decadent sundaes, and custom
+                        creations.</p>
+                    <button><a href="./dine-in.html">Find the nearest store to you</a> <i class="fa fa-arrow-right"
+                            aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="service-card bottomani">
+                <div class="service-card1">
+                    <h2>Island-Wide Delivery</h2>
+                    <h3>Ice Cream On the Go – Delivered to Your Door</h3>
+                    <img src="./images/delivary.png" height="120px" width="120px">
+                    <p>Whether it’s a late-night craving or a sweet surprise for someone special, we’ll bring
+                        freshly scooped goodness straight to your doorstep – fast, fresh, and frozen to perfection.
+                    </p>
+                    <a href="./delivery.html"><button>Enter your address <i class="fa fa-arrow-right"
+                                aria-hidden="true"></i></button></a>
+                </div>
+            </div>
+            <div class="service-card leftani">
+                <div class="service-card1">
+                    <h2>Catering</h2>
+                    <h3>Sweeten Your Event – Ice Cream Catering</h3>
+                    <img src="./images/event.png" height="120px" width="120px">
+                    <p>Whether it's a birthday party, wedding, corporate event, or any celebration, we provide
+                        custom ice cream bars, sundae stations, or full-service catering to keep your guests
+                        delighted. </p>
+                    <a href="./catering.html"><button>Tell us about your event <i class="fa fa-arrow-right"
+                                aria-hidden="true"></i></button></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About / Brand Info -->
+    <section class="about" id="about">
+        <div class="brand-profile">
+            <h1>Yah!</h1>
+            <div class="brand-rating">
+                <span>4.2</span>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>(196)</span>
+            </div>
+            <p class="brand-meta">Ice cream shop · <i class="fas fa-wheelchair"></i></p>
+            
+            <div class="action-icons">
+                <div class="action-item"><div class="a-icon"><i class="fas fa-directions"></i></div><span>Directions</span></div>
+                <div class="action-item"><div class="a-icon"><i class="far fa-bookmark"></i></div><span>Save</span></div>
+                <div class="action-item"><div class="a-icon"><i class="fas fa-map-marker-alt"></i></div><span>Nearby</span></div>
+                <div class="action-item"><div class="a-icon"><i class="fas fa-mobile-alt"></i></div><span>Send to phone</span></div>
+                <div class="action-item"><div class="a-icon"><i class="fas fa-share-alt"></i></div><span>Share</span></div>
+            </div>
+        </div>
+        <div class="box-container about-box">
+            <h2 class="rightani">Get The Cool Down With Our Creamy Creations!</h2>
+            <p class="leftani">Welcome to Yah! We're more than just an ice cream shop – we're a community driven by a shared vision for the perfect scoop. Located in the heart of East Legon, we stay true to our roots and the values that define us. Come visit us and let’s create sweet memories together!
+            </p>
+        </div>
+    </section>
+
+    <!-- FLAVOR OF THE MONTH SPOTLIGHT -->
+    <section class="flavor-spotlight" style="background: linear-gradient(135deg, #fff5f8 0%, #fff 100%); padding: 80px 10%; text-align: center;">
+        <div class="spotlight-tag" style="background: var(--main-color); color: white; padding: 5px 15px; border-radius: 20px; display: inline-block; margin-bottom: 20px; font-weight: 600; font-size: 0.9rem;">
+            MAY SPOTLIGHT
+        </div>
+        <h2 style="font-size: 3rem; color: var(--ternary-color); margin-bottom: 10px;">Blueberry Churn</h2>
+        <p style="color: #666; max-width: 700px; margin: 0 auto 40px;">A refreshing explosion of wild blueberries swirled into our signature creamy base. The perfect spring treat.</p>
+        
+        <div class="spotlight-card" style="display: flex; align-items: center; justify-content: center; gap: 50px; flex-wrap: wrap;">
+            <div class="spotlight-image" style="position: relative;">
+                <img src="images/blue berry.jpg" alt="Blueberry Churn" style="width: 350px; height: 350px; object-fit: cover; border-radius: 50%; box-shadow: 0 20px 40px rgba(217, 22, 86, 0.2);">
+                <div class="floating-price" style="position: absolute; top: 20px; right: 20px; background: white; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.5rem; color: var(--main-color); box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 2px solid var(--main-color);">
+                    $30
+                </div>
+            </div>
+            <div class="spotlight-info" style="text-align: left; max-width: 400px;">
+                <div class="stars" style="color: #ffcc00; margin-bottom: 15px;">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <span style="color: #888; font-size: 0.9rem; margin-left: 10px;">(215 Reviews)</span>
+                </div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 15px;">A Burst of Freshness</h3>
+                <p style="margin-bottom: 25px; line-height: 1.6;">Our artisans hand-pick the finest wild blueberries to create this vibrant masterpiece. Experience the smooth, velvety texture that defines the Yah! experience.</p>
+                <button onclick="addToCartSpotlight('p015')" class="btn" style="padding: 15px 35px; background: var(--ternary-color); border: none; cursor: pointer; color: white; border-radius: 30px; font-weight: 600;">Order This Flavor</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHEF'S SECRET STORYTELLING -->
+    <section class="chef-secret" style="padding: 100px 10%; background: #1a1a1a; color: white; display: flex; align-items: center; gap: 80px; flex-wrap: wrap; margin: 0;">
+        <div class="secret-image" style="flex: 1; min-width: 300px; position: relative;">
+            <img src="images/hero-grid1.jpg" alt="Chef" style="width: 100%; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.5);">
+            <div style="position: absolute; bottom: -30px; right: -30px; background: var(--main-color); padding: 30px; border-radius: 15px; text-align: center;">
+                <span style="display: block; font-size: 2.5rem; font-weight: 800;">100%</span>
+                <span style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">Organic Milk</span>
+            </div>
+        </div>
+        <div class="secret-text" style="flex: 1.2; min-width: 300px;">
+            <h2 style="font-size: 3rem; margin-bottom: 30px; line-height: 1.2;">The Secret is in the <span style="color: var(--main-color);">Slow-Churn</span></h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #ccc; margin-bottom: 30px;">
+                    Unlike mass-produced ice cream, Yah! is churned at a much slower speed. This process introduces less air, resulting in a denser, richer, and more flavorful experience that lingers on your palate.
+                </p>
+            <ul style="list-style: none;">
+                <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 15px;"><i class="fas fa-check-circle" style="color: var(--main-color);"></i> Hand-Zested Sicilian Lemons</li>
+                <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 15px;"><i class="fas fa-check-circle" style="color: var(--main-color);"></i> Single-Origin Belgian Chocolate</li>
+                <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 15px;"><i class="fas fa-check-circle" style="color: var(--main-color);"></i> Madagascan Vanilla Beans</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- PREMIUM REVIEWS CAROUSEL -->
+    <section class="customer-reviews" style="padding: 100px 0; background: #fdfdfd; overflow: hidden; margin: 0;">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <h2 class="heading">Sweet <span>Testimonials</span></h2>
+            <p style="color: #666;">What our community is saying about Yah!</p>
+        </div>
+        
+        <div class="reviews-track" style="display: flex; gap: 30px; animation: scrollReviews 40s linear infinite; width: fit-content; padding: 0 50px;">
+            <!-- Review 1 -->
+            <div class="review-card" style="min-width: 350px; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee;">
+                <div class="stars" style="color: #ffc107; margin-bottom: 15px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p style="font-style: italic; margin-bottom: 25px; color: #444;">"Hands down the best gelato in the city. The texture is so smooth it literally melts like silk!"</p>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="width: 50px; height: 50px; border-radius: 50%; background: #eee; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--main-color);">SJ</div>
+                    <div><h4 style="margin: 0;">Sarah Jenkins</h4><p style="margin: 0; font-size: 0.8rem; color: #888;">Loyal Scoop Member</p></div>
+                </div>
+            </div>
+            <!-- Review 2 -->
+            <div class="review-card" style="min-width: 350px; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee;">
+                <div class="stars" style="color: #ffc107; margin-bottom: 15px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p style="font-style: italic; margin-bottom: 25px; color: #444;">"The Wild Strawberry Balsamic is a game changer. I never knew ice cream could be this sophisticated."</p>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="width: 50px; height: 50px; border-radius: 50%; background: #eee; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--main-color);">MA</div>
+                    <div><h4 style="margin: 0;">Mark Anthony</h4><p style="margin: 0; font-size: 0.8rem; color: #888;">Food Critic</p></div>
+                </div>
+            </div>
+            <!-- Review 3 -->
+            <div class="review-card" style="min-width: 350px; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee;">
+                <div class="stars" style="color: #ffc107; margin-bottom: 15px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p style="font-style: italic; margin-bottom: 25px; color: #444;">"My kids love the fun atmosphere. It's our Sunday tradition now. Truly family friendly!"</p>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="width: 50px; height: 50px; border-radius: 50%; background: #eee; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--main-color);">LD</div>
+                    <div><h4 style="margin: 0;">Lisa Davis</h4><p style="margin: 0; font-size: 0.8rem; color: #888;">Happy Mom</p></div>
+                </div>
+            </div>
+            <!-- Clone for infinite scroll -->
+            <div class="review-card" style="min-width: 350px; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee;">
+                <div class="stars" style="color: #ffc107; margin-bottom: 15px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p style="font-style: italic; margin-bottom: 25px; color: #444;">"Hands down the best gelato in the city. The texture is so smooth it literally melts like silk!"</p>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="width: 50px; height: 50px; border-radius: 50%; background: #eee; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--main-color);">SJ</div>
+                    <div><h4 style="margin: 0;">Sarah Jenkins</h4><p style="margin: 0; font-size: 0.8rem; color: #888;">Loyal Scoop Member</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        @keyframes scrollReviews {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-1140px); } 
+        }
+        .reviews-track:hover { animation-play-state: paused; }
+    </style>
+
+    <!-- WHY Yah! ? -->
+    <section class="why-Yah!">
+        <h1>Why Yah!?</h1>
+        <div class="feature-container">
+            <div class="inner">
+                <div class="feature-box rightani">
+                    <div class="icon-circle">
+                        <img src="images/flavour-icon.png" alt="Flavors Icon">
+                    </div>
+                    <div class="feature-text">
+                        <h3>Range of Flavors</h3>
+                        <p>From classic vanilla to exotic combinations, Yah! offers a wide range of flavors to satisfy every
+                            palate.</p>
+                    </div>
+                </div>
+                <div class="feature-box leftani">
+                    <div class="icon-circle ">
+                        <img src="images/hygiene-icon.png" alt="Hygiene Icon">
+                    </div>
+                    <div class="feature-text">
+                        <h3>Hygiene & Food Safety</h3>
+                        <p>We maintain the highest hygiene standards, ensuring every scoop is safe and delicious.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="inner">
+                <div class="feature-box rightani">
+                    <div class="icon-circle">
+                        <img src="images/quality-icon.png" alt="Quality Ingredients Icon">
+                    </div>
+                    <div class="feature-text">
+                        <h3>Best Quality Ingredients</h3>
+                        <p>Only the finest ingredients make it into our ice cream, for a rich and unforgettable
+                            experience.</p>
+                    </div>
+                </div>
+                <div class="feature-box leftani">
+                    <div class="icon-circle">
+                        <img src="images/friendly-icon.png" alt="Fun Atmosphere Icon">
+                    </div>
+                    <div class="feature-text">
+                        <h3>Fun & Friendly Atmosphere</h3>
+                        <p>Our parlors are designed to be fun and inviting, making every visit a sweet memory.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parlour Features Grid -->
+    <section class="parlour-features">
+        <h2 class="heading">Parlour <span>Services</span></h2>
+        <div class="features-container">
+            <div class="feature-category">
+                <h3>Accessibility</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i> Wheelchair-accessible entrance</li>
+                </ul>
+            </div>
+            <div class="feature-category">
+                <h3>Service Options</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i> Home Delivery</li>
+                    <li><i class="fas fa-check"></i> Takeaway</li>
+                    <li><i class="fas fa-check"></i> Dine-in Seating</li>
+                    <li><i class="fas fa-check"></i> Table service</li>
+                </ul>
+            </div>
+            <div class="feature-category">
+                <h3>Vibe & Amenities</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i> Casual, Cosy & Trendy</li>
+                    <li><i class="fas fa-check"></i> Good for groups</li>
+                    <li><i class="fas fa-check"></i> Good for kids</li>
+                    <li><i class="fas fa-check"></i> Toilet available</li>
+                </ul>
+            </div>
+            <div class="feature-category">
+                <h3>Payments</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i> Credit & Debit cards</li>
+                    <li><i class="fas fa-check"></i> NFC mobile payments</li>
+                    <li><i class="fas fa-check"></i> Quick visit</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- reviews -->
+    <section class="reviewSection" id="reviewsSection">
+        <div style="text-align:center; margin-bottom:10px;">
+            <span style="display:inline-block; background:rgba(217,22,86,0.1); color:var(--main-color); border:1px solid rgba(217,22,86,0.25); border-radius:20px; padding:4px 14px; font-size:0.75rem; font-weight:700; text-transform:uppercase;">
+                <i class="fas fa-check-circle"></i> Verified Community Feedback (Demo Data)
+            </span>
+        </div>
+        <h1>What Our Community Says</h1>
+        <div class="reviews">
+            <div class="review-box bottomani">
+                <i class="fa fa-quote-right quote" aria-hidden="true"></i>
+                <i class="fa fa-quote-right quote" aria-hidden="true"></i>
+                <div class="top">
+                    <img src="images/reveiwer1.jpg" alt="Reviewer yaSMin dugBa">
+                    <div class="right">
+                        <div class="name"><span>yaSMin dugBa</span> <br> <small>Local Guide</small></div>
+                        <div class="stars">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="text">“Simple place to sit with friends and loved ones.... have some bites, ice cream, a drink or a smoothie ... would recommend!”
+                </div>
+            </div>
+            <div class="review-box bottomani">
+                <i class="fa fa-quote-right quote" aria-hidden="true"></i>
+                <i class="fa fa-quote-right quote" aria-hidden="true"></i>
+                <div class="top">
+                    <img src="images/reveiwer1.jpg" alt="Reviewer Tom Stepher">
+                    <div class="right">
+                        <div class="name"><span>Tom Stepher</span> <br> <small>Verified Customer</small></div>
+                        <div class="stars">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="text">“Yah!’s ice cream is like a symphony for your taste buds. The salted caramel
+                    swirl? Divine!”
+                </div>
+            </div>
+
+            <div class="review-box bottomani">
+                <i class="fa fa-quote-right quote" aria-hidden="true"></i>
+                <div class="top">
+                    <img src="images/reveiwer4.webp" alt="">
+                    <div class="right">
+                        <div class="name"><span>Oliviya Lee</span> <br> <small>Verified Customer</small></div>
+                        <div class="stars">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text">“Visited here on a hot day!
+                    The mint chocolate took me straight to heavens.”</div>
+            </div>
+
+            <div class="review-box bottomani"><i class="fa fa-quote-right quote" aria-hidden="true"></i>
+                <div class="top">
+                    <img src="images/reveiwer2.jpg" alt="">
+                    <div class="right">
+                        <div class="name"><span>Andrew johnson</span> <br> <small>Verified Customer</small></div>
+                        <div class="stars">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text">“The pistachio gelato here is nutty nirvana. Close your eyes and savor the
+                    green goodness.”</div>
+            </div>
+
+            <div class="review-box bottomani">
+                <i class="fa fa-quote-right quote" aria-hidden="true"></i>
+                <div class="top">
+                    <img src="images/reveiwer5.jpg" alt="">
+                    <div class="right">
+                        <div class="name"><span>Mia Patal</span> <br> <small>Verified Customer</small></div>
+                        <div class="stars">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="text">“Shared a double scoop with my sweetheart.
+                    Loved the strawberry and dark chocolate.”</div>
+            </div>
+
+            <div class="review-box bottomani">
+                <i class="fa fa-quote-right quote" aria-hidden="true"></i>
+                <div class="top">
+                    <img src="images/reveiwer3.jpg" alt="">
+                    <div class="right">
+                        <div class="name"><span>Kwame Mensah</span> <br> <small>Verified Community Resident</small></div>
+                        <div class="stars">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text">"From the name itself,these Ice Creams here are best in quality and taste of
+                    course."
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- contact -->
+    <section class="contact" id="contact">
+        <h1>Contact Us</h1>
+        <form action="#" novalidate class="box-container bottomani" id="contact-form">
+            <div class="row">
+                <div class="input-box">
+                    <label for="fname">Your First Name</label><br>
+                    <input class="dark_bg_txt" type="text" id="fname" placeholder="Enter your first name"
+                        oninput="this.parentElement.querySelector('small').textContent = ''" autocomplete="given-name">
+                    <small class="error" style="color: rgb(255, 0, 0);"></small>
+                </div>
+                <div class="input-box">
+                    <label for="lname">Your Last Name</label><br>
+                    <input class="dark_bg_txt" type="text" id="lname" placeholder="Enter your last name"
+                        oninput="this.parentElement.querySelector('small').textContent = ''" autocomplete="family-name">
+                    <small class="error" style="color: rgb(255, 0, 0);"></small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-box">
+                    <label for="email">Your Email</label><br>
+                    <input class="dark_bg_txt" type="email" id="email" placeholder="example@gmail.com"
+                        oninput="this.parentElement.querySelector('small').textContent = ''" autocomplete="email">
+                    <small class="error" style="color: rgb(255, 0, 0);"></small>
+                </div>
+                <div class="input-box">
+                    <label for="phone">Your Contact Number</label><br>
+                    <input class="dark_bg_txt" type="tel" id="phone" placeholder="Enter your contact number" maxlength="12"
+                        oninput="this.parentElement.querySelector('small').textContent = ''" autocomplete="tel">
+                    <small class="error" style="color: rgb(255, 0, 0);"></small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-box">
+                    <label for="message">Your Message</label><br>
+                    <textarea class="dark_bg_txt" name="" id="message" cols="30" rows="10"
+                        placeholder="Enter your messege here"
+                        oninput="this.parentElement.querySelector('small').textContent = ''" autocomplete="off"></textarea>
+                    <small class="error" style="color: rgb(255, 0, 0);"></small>
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" value="Send">
+            </div>
+        </form>
+    </section>
+
+    <!-- COMMUNITY SCOOPS (INSTAGRAM FEED MOCK) -->
+    <section class="community-scoops" style="padding: 80px 10%; background: white;">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2 class="heading">Community <span>Scoops</span></h2>
+            <p style="color: #666;">Tag us @Yah_Official to be featured!</p>
+        </div>
+        <div class="instagram-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+            <div class="insta-post" style="position: relative; overflow: hidden; border-radius: 12px; aspect-ratio: 1/1;">
+                <img src="images/gallary1.jpg" alt="Insta 1" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
+                <div class="insta-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; color: white;">
+                    <i class="fab fa-instagram" style="font-size: 2rem;"></i>
+                </div>
+            </div>
+            <div class="insta-post" style="position: relative; overflow: hidden; border-radius: 12px; aspect-ratio: 1/1;">
+                <img src="images/gallary2.jpg" alt="Insta 2" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
+                <div class="insta-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; color: white;">
+                    <i class="fab fa-instagram" style="font-size: 2rem;"></i>
+                </div>
+            </div>
+            <div class="insta-post" style="position: relative; overflow: hidden; border-radius: 12px; aspect-ratio: 1/1;">
+                <img src="images/gallary3.jpg" alt="Insta 3" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
+                <div class="insta-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; color: white;">
+                    <i class="fab fa-instagram" style="font-size: 2rem;"></i>
+                </div>
+            </div>
+            <div class="insta-post" style="position: relative; overflow: hidden; border-radius: 12px; aspect-ratio: 1/1;">
+                <img src="images/gallary4.jpg" alt="Insta 4" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
+                <div class="insta-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; color: white;">
+                    <i class="fab fa-instagram" style="font-size: 2rem;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .insta-post:hover img { transform: scale(1.1); }
+        .insta-post:hover .insta-overlay { opacity: 1; }
+    </style>
+
+    <!-- footer -->
+    <section class="footer">
+        <div class="footer-row">
+            <div class="footer-col">
+                <h4>Useful links</h4>
+                <ul class="links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="./dashboard.html">My Account</a></li>
+                    <li><a href="./products.html">Products</a></li>
+                    <li><a href="./gallery.html">Gallery</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="./faq.html" class="link"> FAQ</a></li>
+                    <li><a href="./blogs.html"> Our Blogs</a></li>
+                    <li><a href="./terms&condition.html">Customer Agreement</a></li>
+                    <li><a href="./privacy.html"> Privacy Policy</a></li>
+                    <li><a href="./admin.html" style="color: var(--accent-purple); font-weight: 600;"><i class="fas fa-lock"></i> Admin Portal</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Opening Hours</h4>
+                <ul class="links">
+                    <li><a href="#">Mon-Sun : 10.00 AM to 10.00 PM</a></li>
+                </ul>
+                <h4 style="margin-top: 15px;">Official Location</h4>
+                <ul class="links">
+                    <li class="address1"><a href="https://maps.google.com/?q=Yah!+East+Legon,+Lagos+Ave,+Accra" target="_blank" class="social"><i class="fa-solid fa-location-dot"></i> Lagos Ave, East Legon, Accra, Ghana</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect With Us</h4>
+                <ul class="links">
+                    <li><a href="#" class="social"><i class="fa-solid fa-phone"></i> +233 24 123 4567</a></li>
+                    <li><a href="https://facebook.com" class="social"><i class="fa-brands fa-facebook-f"></i> Facebook</a></li>
+                </ul>
+                <h4 style="margin-top: 15px;">Follow Us</h4>
+                <ul class="links">
+                    <li><a href="https://www.facebook.com/" class="social"><i class="fa-brands fa-facebook-f"></i>
+                            Facebook</a></li>
+                    <li><a href="https://www.instagram.com/" class="social"><i class="fa-brands fa-instagram"></i>
+                            Instagram</a></li>
+                    <li><a href="https://www.linkedin.com/" class="social"><i class="fa-brands fa-linkedin-in"></i>
+                            Linkedin</a></li>
+                    <li><a href="https://www.twitter.com/" class="social"><i class="fa-brands fa-twitter"></i>
+                            Twitter</a></li>
+                    <li><a href="https://wa.me/233505988057" class="social" target="_blank"><i class="fa-brands fa-whatsapp"></i> 
+                            Whatsapp</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>
+                    Subscribe to our newsletter for a weekly dose
+                    of news, updates, helpful tips, and
+                    exclusive offers.
+                </p>
+                <form action="#">
+                    <input id="auto-field-8" name="auto-field-8" type="email" placeholder="Your email" required autocomplete="email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <button class="scroll-button">
+        <img src="images/icecream-cone.png" alt="icecream-cone" />
+    </button>
+
+    <!-- copyright -->
+    <div class="copyright">
+        <div class="copyright-top">&copy; <span id="year"></span> by <span>Yah!</span> | All Rights Reserved</div>
+        <div class="copyright-dev">Developed by <a href="https://wa.me/233505988057" target="_blank" class="dev-link">Roy.tech</a> &nbsp;|&nbsp; <a href="https://wa.me/233505988057" target="_blank" class="dev-whatsapp"><i class="fa-brands fa-whatsapp"></i> 0505988057</a></div>
+    </div>
+
+    <!-- Toaster -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="products.html" class="nav-item">
+            <i class="fas fa-ice-cream"></i>
+            <span>Products</span>
+        </a>
+        <a href="track.html" class="nav-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Track</span>
+        </a>
+        <a href="dashboard.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+    </nav>
+
+    <!-- script files -->
+    <script src="script/contact.js"></script>
+    <script type="module" src="script/products.js"></script>
+    <script type="module" src="script/nav.js"></script>
+    <script type="module" src="script/cart.js"></script>
+    <script src="script/FAQ.js"></script>
+    <script src="script/topscrollindicator.js"></script>
+
+    <script type="module" src="script/toast.js"></script>
+    <script type="module" src="script/flavor_section.js"></script>
+
+    <script src="script/animations.js"></script>
+    <script type="module" src="script/script.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                document.body.classList.add('loaded');
+            }, 800);
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const locationBadge = document.getElementById('live-location-badge');
+            
+            // Get user's current location
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    async (position) => {
+                        const { latitude, longitude } = position.coords;
+                        try {
+                            // Reverse geocode to get address
+                            const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}&countrycodes=gh&accept-language=en`);
+                            const data = await response.json();
+                            
+                            if (data && data.display_name) {
+                                // Extract city/area from address
+                                const addressParts = data.display_name.split(',');
+                                const location = addressParts[0].trim();
+                                locationBadge.textContent = '📍 ' + location;
+                                locationBadge.title = data.display_name;
+                            }
+                        } catch (error) {
+                            console.error('Geocoding error:', error);
+                            locationBadge.textContent = '📍 Location';
+                        }
+                    },
+                    (error) => {
+                        console.error('Geolocation error:', error);
+                        locationBadge.textContent = '📍 East Legon';
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 10000,
+                        maximumAge: 0
+                    }
+                );
+            }
+            
+            if (locationBadge) {
+                locationBadge.addEventListener('click', function() {
+                    const fullAddress = locationBadge.title || 'East Legon, Accra, Ghana';
+                    if (window.showToast) {
+                        showToast('📍 Your Location: ' + fullAddress, 'info');
+                    } else {
+                        alert('📍 Your Location: ' + fullAddress);
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="script/cursor.js"></script>
+    <script src="script/animations.js"></script>
+    <script type="module" src="script/home_marketplace.js"></script>
+</body>
+
+</html>
